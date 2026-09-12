@@ -1,0 +1,32 @@
+name: Scrape Cheese Board pizza schedule
+
+on:
+  schedule:
+    # 09:00 UTC daily — adjust to whenever the site tends to update
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests beautifulsoup4
+
+      - name: Scrape schedule (writes/upserts one data/<pizza-date>.json per day listed)
+        run: python scrape_cheeseboard.py --data-dir data
+
+      - name: Commit new data
+        run: |
+          git config user.name "pizza-bot"
+          git config user.email "pizza-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Update pizza schedule ($(date -u +%F))"
+          git push
