@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -23,10 +24,24 @@ jobs:
       - name: Scrape schedule (writes/upserts one data/<pizza-date>.json per day listed)
         run: python scrape_cheeseboard.py --data-dir data
 
-      - name: Commit new data
-        run: |
-          git config user.name "pizza-bot"
-          git config user.email "pizza-bot@users.noreply.github.com"
-          git add data/
-          git diff --cached --quiet || git commit -m "Update pizza schedule ($(date -u +%F))"
-          git push
+      - name: Today's date
+        id: date
+        run: echo "today=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Open PR with any new/changed data
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update pizza schedule (${{ steps.date.outputs.today }})"
+          title: "Pizza schedule update — ${{ steps.date.outputs.today }}"
+          body: |
+            Automated pizza schedule scrape for ${{ steps.date.outputs.today }}.
+
+            Review the diff under `data/` before merging — this is also the
+            place to catch scraper bugs (bad parsing, stray parentheticals,
+            wrong date) before they land on `main`.
+          branch: "pizza-schedule/${{ steps.date.outputs.today }}"
+          delete-branch: true
+          add-paths: data/
+          author: "pizza-bot <pizza-bot@users.noreply.github.com>"
+          committer: "pizza-bot <pizza-bot@users.noreply.github.com>"
+          labels: pizza-data
