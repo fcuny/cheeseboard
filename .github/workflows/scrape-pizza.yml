@@ -15,14 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v3
         with:
           python-version: "3.12"
 
-      - run: pip install requests beautifulsoup4
+      - run: uv sync
 
       - name: Scrape schedule (writes/upserts one data/<pizza-date>.json per day listed)
-        run: python scrape_cheeseboard.py --data-dir data
+        run: uv run scrape_cheeseboard.py --data-dir data
 
       - name: Today's date
         id: date

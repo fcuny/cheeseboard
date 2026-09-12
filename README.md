@@ -31,9 +31,10 @@ overwritten each time.
 
 ## Local dev
 
+Dependencies and script execution are managed with [uv](https://docs.astral.sh/uv/).
+
 ```
-python3 -m venv .venv
-./.venv/bin/pip install -r requirements.txt
-./.venv/bin/python -m pytest
-./.venv/bin/python scrape_cheeseboard.py --print
+uv sync
+uv run pytest
+uv run scrape_cheeseboard.py --print
 ```

@@ -1,0 +1,20 @@
+[project]
+name = "cheeseboard"
+version = "0.1.0"
+description = "Daily scrape of the Cheese Board Collective pizza schedule"
+authors = [
+    { name = "Franck Cuny", email = "franck@fcuny.net" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "requests",
+    "beautifulsoup4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
