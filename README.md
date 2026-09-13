@@ -13,21 +13,34 @@ overwritten each time.
 ## Files
 
 - `scrape_cheeseboard.py` — fetches the schedule page and parses each day's
-  pizza (skips salads, skips days with no pizza listed).
+  pizza (skips salads).
 - `scrape-pizza.yml` — the GitHub Actions workflow (goes in
   `.github/workflows/`).
-- `tests/` — unit tests against a saved HTML fixture of the real page.
-- `data/` — one JSON file per pizza date, e.g.:
+- `tests/` — unit tests against saved HTML fixtures of the real page.
+- `data/` — one JSON file per pizza date, either a normal day:
 
   ```json
   {
     "date": "2026-09-12",
     "weekday": "Sat",
+    "closed": false,
     "ingredients_raw": "Organic corn (Avalos Farm), red onion, mozzarella, ...",
     "ingredients": ["Organic corn", "red onion", "mozzarella", "..."],
     "ingredients_normalized": ["organic corn", "red onion", "mozzarella", "..."]
   }
   ```
+
+  or a closed day (weekly closure, holiday, or next week's schedule not
+  posted yet — the site marks all of these the same way, with no "Pizza"
+  heading and a "The pizzeria is closed today." paragraph):
+
+  ```json
+  { "date": "2026-09-14", "weekday": "Mon", "closed": true }
+  ```
+
+  The scraper only fails (non-zero exit) when it can't find *any*
+  recognizable day on the page at all — a real sign the site's structure
+  changed, not that the pizzeria happened to be closed.
 
 ## Local dev
 

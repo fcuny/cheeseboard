@@ -25,6 +25,7 @@ def test_single_day_fixture():
     day = days[0]
     assert day["date"] == "2026-09-12"
     assert day["weekday"] == "Sat"
+    assert day["closed"] is False
     assert "cilantro" in day["ingredients"]
     # Farm attribution and the vegan/cashew footnote are parenthetical asides,
     # not ingredients — should be stripped.
@@ -34,6 +35,31 @@ def test_single_day_fixture():
     assert not any("cabbage" in i.lower() for i in day["ingredients"])
     # Normalized list is lowercased.
     assert day["ingredients_normalized"] == [i.lower() for i in day["ingredients"]]
+
+
+def test_closed_days_fixture():
+    # Real page captured 2026-09-13 (a Sunday — both Sunday and Monday show
+    # "The pizzeria is closed today." with no "Pizza" heading at all, and
+    # next week's schedule isn't posted yet). This must NOT be treated as a
+    # scrape failure.
+    soup = load("closed_days.html")
+    today = dt.date(2026, 9, 13)
+
+    days = sc.parse_schedule(soup, today=today)
+
+    assert len(days) == 2
+    assert [d["date"] for d in days] == ["2026-09-13", "2026-09-14"]
+    for day in days:
+        assert day["closed"] is True
+        # Closed-day records carry no ingredient fields.
+        assert "ingredients" not in day
+
+
+def test_parse_schedule_returns_empty_when_page_structure_is_unrecognized():
+    # No div.daily-pizza on the page at all — this is the real failure case
+    # (site redesign), distinct from "every listed day happens to be closed".
+    soup = BeautifulSoup("<html><body>nothing here</body></html>", "html.parser")
+    assert sc.parse_schedule(soup, today=dt.date(2026, 9, 13)) == []
 
 
 def test_resolve_year_handles_december_to_january_boundary():

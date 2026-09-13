@@ -4,7 +4,11 @@
 Pulls whatever days are currently shown on the schedule page (one on a
 Saturday, the full week on a Monday), skips the salads, and writes one
 JSON file per pizza date under a data directory, upserting each file as
-that date gets re-scraped on subsequent runs.
+that date gets re-scraped on subsequent runs. Closed days (weekly closures,
+holidays) are written too, as {"closed": true} records, so their absence
+from data/ can't be mistaken for "not scraped yet". The run only fails if
+zero day-articles can be found at all, which means the page structure
+itself changed, not that the pizzeria happened to be closed.
 
 Usage:
     python scrape_cheeseboard.py                # write to ./data/
@@ -31,6 +35,7 @@ DATE_RE = re.compile(
 )
 PAREN_RE = re.compile(r"\([^)]*\)")
 WHITESPACE_RE = re.compile(r"\s+")
+CLOSED_RE = re.compile(r"closed", re.IGNORECASE)
 
 
 def fetch_soup(url: str = URL) -> BeautifulSoup:
@@ -97,28 +102,38 @@ def parse_day(article, today: dt.date) -> dict | None:
     # Skips announcement text (e.g. "special-hours-pizza") outside that span.
     capturing = False
     ingredient_texts: list[str] = []
+    menu_texts: list[str] = []
     for el in menu.find_all(["h3", "p"], recursive=False):
         text = el.get_text(" ", strip=True)
+        menu_texts.append(text)
         if el.name == "h3":
             capturing = text.strip().lower() == "pizza"
             continue
         if capturing and text:
             ingredient_texts.append(text)
 
-    if not ingredient_texts:
-        # A day can go by with no pizza listed (holiday/closure) — skip it.
-        return None
+    if ingredient_texts:
+        ingredients_raw = " ".join(ingredient_texts)
+        ingredients, ingredients_normalized = parse_ingredients(ingredients_raw)
+        return {
+            "date": iso_date,
+            "weekday": weekday,
+            "closed": False,
+            "ingredients_raw": ingredients_raw,
+            "ingredients": ingredients,
+            "ingredients_normalized": ingredients_normalized,
+        }
 
-    ingredients_raw = " ".join(ingredient_texts)
-    ingredients, ingredients_normalized = parse_ingredients(ingredients_raw)
+    # No "<h3>Pizza</h3>" block found. The site marks closures (weekly
+    # closed days, holidays) with a plain "The pizzeria is closed today."
+    # paragraph and no heading at all — record that explicitly rather than
+    # silently dropping the day, so a day of legitimate closures doesn't
+    # look identical to zero days being scraped (which is a real failure).
+    if CLOSED_RE.search(" ".join(menu_texts)):
+        return {"date": iso_date, "weekday": weekday, "closed": True}
 
-    return {
-        "date": iso_date,
-        "weekday": weekday,
-        "ingredients_raw": ingredients_raw,
-        "ingredients": ingredients,
-        "ingredients_normalized": ingredients_normalized,
-    }
+    # Some other, unrecognized menu shape — don't guess, just skip this day.
+    return None
 
 
 def parse_schedule(soup: BeautifulSoup, today: dt.date | None = None) -> list[dict]:

@@ -5,7 +5,7 @@ Daily-scrape https://cheeseboardcollective.coop/pizza/pizza-schedule/, extract
 each day's pizza (name/date + ingredient list), skip salads, store results as
 data for later stats. Runs as a scheduled GitHub Action.
 
-Repo: https://github.com/fcuny/cheeseboard
+Repo: https://github.com/fcuny/cheeseboard (public)
 
 ## Done
 1. **Verified against the real DOM.** Each day is
@@ -18,28 +18,43 @@ Repo: https://github.com/fcuny/cheeseboard
      unit test.
    - Parenthetical asides (farm attribution, vegan/cashew footnotes) are
      stripped before splitting on commas; covered by a unit test.
-   - Days with no `<h3>Pizza</h3>` block are skipped, not crashed on.
-3. **Tests added** (`tests/`) against a saved real-page fixture
-   (`tests/fixtures/single_day.html`, captured 2026-09-12).
+   - **Closed days** (weekly closures, holidays, or next week not posted
+     yet) are detected from the site's own "The pizzeria is closed today."
+     text and written as `{"closed": true}` records instead of causing a
+     failure. The scrape only fails when zero recognizable day-articles are
+     found at all (real site/structure breakage) — not tied to any
+     particular weekday. Covered by a unit test against a real Sun/Mon
+     closed-days fixture.
+3. **Tests added** (`tests/`) against saved real-page fixtures:
+   `single_day.html` (2026-09-12, one pizza day) and `closed_days.html`
+   (2026-09-13, Sunday+Monday both closed).
 4. **Storage/dedup decided:** one file per *pizza date*
    (`data/<pizza-date>.json`), upserted — not one file per scrape-run date.
-   Verified end-to-end via a manual `workflow_dispatch` run.
-5. **GitHub Action wired up and verified.** Daily cron at 09:00 UTC,
-   `contents: write` permission, commits via `pizza-bot`. No failure
+5. **PR-based review flow.** The Action opens a PR per run (branch
+   `pizza-schedule/<date>`, `pizza-data` label) via
+   `peter-evans/create-pull-request` instead of pushing straight to `main`,
+   so scraper bugs or data cleanup can be caught before merging. No PR is
+   opened when a run produces no diff.
+6. **uv for dependency management.** `pyproject.toml` + `uv.lock` +
+   `.python-version` (3.12); CI uses `astral-sh/setup-uv` + `uv sync` +
+   `uv run`.
+7. **GitHub Action wired up and verified**, including the closed-day fix,
+   via real `workflow_dispatch` runs. Daily cron at 09:00 UTC. No failure
    notification beyond GitHub's own failed-run email (deliberate, per
    for-fun scope).
 
 ## Open / deferred
-- **Multi-day fixture.** Only ever observed a single-pizza Saturday so far
-  (today's schedule only lists one day). Add a second fixture + test once a
-  Monday scrape shows the full week, to confirm the `article`-per-day
-  structure repeats as expected across multiple days in one page.
+- **Multi-day pizza fixture.** Only observed single-pizza days and
+  all-closed days so far. Add a fixture + test once a run shows several
+  *actual pizza* days in one page (not just closed ones), to confirm the
+  `article`-per-day structure holds for a normal full week.
 - **Occasional extra pizza variants** (e.g. a separate vegan pizza section
   on the same day) — not observed yet. Current parser only captures the
   block after the first `<h3>Pizza</h3>`; revisit if/when the real site
   does this.
 - **(Stretch) Build the stats.** Once a few weeks of `data/*.json` exist:
-  ingredient frequency counts, most common pizza combos, seasonal patterns.
+  ingredient frequency counts, most common pizza combos, seasonal patterns,
+  closed-day frequency.
 
 ## Non-goals
 - No interest in salads — parser does not extract them.
