@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-17",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Organic Warren pear (Double Wild Farm), caramelized onion, walnut , Danish blue cheese, mozzarella, arugula, lemon dressing",
+  "ingredients": [
+    "Organic Warren pear",
+    "caramelized onion",
+    "walnut",
+    "Danish blue cheese",
+    "mozzarella",
+    "arugula",
+    "lemon dressing"
+  ],
+  "ingredients_normalized": [
+    "organic warren pear",
+    "caramelized onion",
+    "walnut",
+    "danish blue cheese",
+    "mozzarella",
+    "arugula",
+    "lemon dressing"
+  ]
+}

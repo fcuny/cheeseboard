@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-15",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Cremini mushroom, leek, mozzarella, garlic olive oil, Montalbán cheese, parsley",
+  "ingredients": [
+    "Cremini mushroom",
+    "leek",
+    "mozzarella",
+    "garlic olive oil",
+    "Montalbán cheese",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cremini mushroom",
+    "leek",
+    "mozzarella",
+    "garlic olive oil",
+    "montalbán cheese",
+    "parsley"
+  ]
+}
