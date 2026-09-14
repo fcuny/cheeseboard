@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-18",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Organic Early Girl tomato (Terra Firma Farm and Golden Rule Organics), organic corn (Avalos Farm), mozzarella, garlic olive oil, basil Parmesan",
+  "ingredients": [
+    "Organic Early Girl tomato",
+    "organic corn",
+    "mozzarella",
+    "garlic olive oil",
+    "basil Parmesan"
+  ],
+  "ingredients_normalized": [
+    "organic early girl tomato",
+    "organic corn",
+    "mozzarella",
+    "garlic olive oil",
+    "basil parmesan"
+  ]
+}

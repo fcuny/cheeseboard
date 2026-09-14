@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-16",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "Organic tomato (Golden Rule and Oya Organics), red onion, Valbreso feta cheese, mozzarella, garlic olive oil, lemon juice, organic lemon zest, cilantro",
+  "ingredients": [
+    "Organic tomato",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "lemon juice",
+    "organic lemon zest",
+    "cilantro"
+  ],
+  "ingredients_normalized": [
+    "organic tomato",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "lemon juice",
+    "organic lemon zest",
+    "cilantro"
+  ]
+}

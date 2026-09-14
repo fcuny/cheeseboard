@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-19",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "House made Romesco sauce (sauce contains almond) , organic zucchini (Golden Rule Organics), red onion, Valbreso feta cheese, mozzarella",
+  "ingredients": [
+    "House made Romesco sauce",
+    "organic zucchini",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella"
+  ],
+  "ingredients_normalized": [
+    "house made romesco sauce",
+    "organic zucchini",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella"
+  ]
+}
