@@ -55,6 +55,57 @@ def test_closed_days_fixture():
         assert "ingredients" not in day
 
 
+def test_full_week_fixture():
+    # Real page captured 2026-09-14 (a Monday) — the first observed case of
+    # a full week listed at once: a closed Monday, five real pizza days,
+    # and a closed Sunday. Confirms the article-per-day structure holds
+    # across multiple days on one page, not just the single-day case.
+    soup = load("full_week.html")
+    today = dt.date(2026, 9, 14)
+
+    days = sc.parse_schedule(soup, today=today)
+
+    assert [(d["date"], d["weekday"], d["closed"]) for d in days] == [
+        ("2026-09-14", "Mon", True),
+        ("2026-09-15", "Tue", False),
+        ("2026-09-16", "Wed", False),
+        ("2026-09-17", "Thu", False),
+        ("2026-09-18", "Fri", False),
+        ("2026-09-19", "Sat", False),
+        ("2026-09-20", "Sun", True),
+    ]
+
+    pizza_days = {d["date"]: d for d in days if not d["closed"]}
+
+    # Spot-check parenthetical asides are stripped even when the source
+    # wraps them in inline <b>/<i> tags (e.g. Saturday's allergen footnote).
+    tuesday = pizza_days["2026-09-15"]
+    assert tuesday["ingredients"] == [
+        "Cremini mushroom",
+        "leek",
+        "mozzarella",
+        "garlic olive oil",
+        "Montalbán cheese",
+        "parsley",
+    ]
+
+    saturday = pizza_days["2026-09-19"]
+    assert saturday["ingredients"] == [
+        "House made Romesco sauce",
+        "organic zucchini",
+        "red onion",
+        "Valbreso feta cheese",
+        "mozzarella",
+    ]
+    assert not any("almond" in i.lower() for i in saturday["ingredients"])
+
+    # Wednesday's salad has its own "(dressing contains dairy)" footnote and
+    # a "spicy citrus crema dressing" line — none of it should leak into the
+    # pizza day.
+    wednesday = pizza_days["2026-09-16"]
+    assert not any("dairy" in i.lower() or "crema dressing" in i.lower() for i in wednesday["ingredients"])
+
+
 def test_parse_schedule_returns_empty_when_page_structure_is_unrecognized():
     # No div.daily-pizza on the page at all — this is the real failure case
     # (site redesign), distinct from "every listed day happens to be closed".

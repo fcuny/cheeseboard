@@ -26,8 +26,11 @@ Repo: https://github.com/fcuny/cheeseboard (public)
      particular weekday. Covered by a unit test against a real Sun/Mon
      closed-days fixture.
 3. **Tests added** (`tests/`) against saved real-page fixtures:
-   `single_day.html` (2026-09-12, one pizza day) and `closed_days.html`
-   (2026-09-13, Sunday+Monday both closed).
+   `single_day.html` (2026-09-12, one pizza day), `closed_days.html`
+   (2026-09-13, Sunday+Monday both closed), and `full_week.html`
+   (2026-09-14, a full week: closed Monday, five real pizza days, closed
+   Sunday — confirms the `article`-per-day structure holds across multiple
+   days on one page, not just the single-day case).
 4. **Storage/dedup decided:** one file per *pizza date*
    (`data/<pizza-date>.json`), upserted — not one file per scrape-run date.
 5. **PR-based review flow.** The Action opens a PR per run (branch
@@ -44,10 +47,6 @@ Repo: https://github.com/fcuny/cheeseboard (public)
    for-fun scope).
 
 ## Open / deferred
-- **Multi-day pizza fixture.** Only observed single-pizza days and
-  all-closed days so far. Add a fixture + test once a run shows several
-  *actual pizza* days in one page (not just closed ones), to confirm the
-  `article`-per-day structure holds for a normal full week.
 - **Occasional extra pizza variants** (e.g. a separate vegan pizza section
   on the same day) — not observed yet. Current parser only captures the
   block after the first `<h3>Pizza</h3>`; revisit if/when the real site
