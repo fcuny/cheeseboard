@@ -19,8 +19,8 @@ jobs:
 
       - run: uv sync
 
-      - name: Scrape schedule (writes/upserts one data/<pizza-date>.json per day listed)
-        run: uv run scrape_cheeseboard.py --data-dir data
+      - name: Scrape schedule (writes/upserts one data/<pizza-date>.json per day listed, refreshes README table)
+        run: uv run scrape_cheeseboard.py --data-dir data --readme README.md
 
       - name: Today's date
         id: date
@@ -39,7 +39,9 @@ jobs:
             wrong date) before they land on `main`.
           branch: "pizza-schedule/${{ steps.date.outputs.today }}"
           delete-branch: true
-          add-paths: data/
+          add-paths: |
+            data/
+            README.md
           author: "pizza-bot <pizza-bot@users.noreply.github.com>"
           committer: "pizza-bot <pizza-bot@users.noreply.github.com>"
           labels: pizza-data

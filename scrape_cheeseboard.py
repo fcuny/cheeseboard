@@ -156,12 +156,60 @@ def write_days(days: list[dict], data_dir: Path) -> list[Path]:
     return written
 
 
+def load_days(data_dir: Path) -> list[dict]:
+    """Load every day record on disk, e.g. to re-render the README table.
+
+    Includes past dates — callers that want only upcoming days should
+    filter by date themselves (see render_schedule_table).
+    """
+    return [json.loads(path.read_text(encoding="utf-8")) for path in sorted(data_dir.glob("*.json"))]
+
+
+README_MARKER_START = "<!-- PIZZA-SCHEDULE:START -->"
+README_MARKER_END = "<!-- PIZZA-SCHEDULE:END -->"
+
+
+def render_schedule_table(days: list[dict], today: dt.date) -> str:
+    """Render a markdown table of today's and future days, soonest first.
+
+    Closed days are shown too (so e.g. a weekly closure doesn't look like a
+    gap in the table), just without a pizza column value.
+    """
+    upcoming = sorted(
+        (day for day in days if dt.date.fromisoformat(day["date"]) >= today),
+        key=lambda day: day["date"],
+    )
+    if not upcoming:
+        return "_No upcoming pizza schedule posted yet._"
+
+    lines = ["| Date | Day | Pizza |", "| --- | --- | --- |"]
+    for day in upcoming:
+        pizza = "_Closed_" if day.get("closed", False) else ", ".join(day["ingredients"])
+        lines.append(f"| {day['date']} | {day['weekday']} | {pizza} |")
+    return "\n".join(lines)
+
+
+def update_readme(readme_path: Path, table: str) -> None:
+    text = readme_path.read_text(encoding="utf-8")
+    if README_MARKER_START not in text or README_MARKER_END not in text:
+        raise SystemExit(
+            f"couldn't find {README_MARKER_START!r} / {README_MARKER_END!r} markers in {readme_path}"
+        )
+    pattern = re.compile(re.escape(README_MARKER_START) + r".*?" + re.escape(README_MARKER_END), re.DOTALL)
+    new_text = pattern.sub(f"{README_MARKER_START}\n{table}\n{README_MARKER_END}", text, count=1)
+    readme_path.write_text(new_text, encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--data-dir", default="data", help="directory to upsert one <date>.json file per pizza into (default: data)"
     )
     parser.add_argument("--print", dest="do_print", action="store_true", help="also print the scraped days as JSON")
+    parser.add_argument(
+        "--readme",
+        help="if set, rewrite the upcoming-pizza table between the PIZZA-SCHEDULE markers in this README file",
+    )
     args = parser.parse_args()
 
     soup = fetch_soup()
@@ -171,9 +219,15 @@ def main() -> None:
         print("No pizza entries found — the page structure may have changed.", file=sys.stderr)
         sys.exit(1)
 
-    written = write_days(days, Path(args.data_dir))
+    data_dir = Path(args.data_dir)
+    written = write_days(days, data_dir)
     for path in written:
         print(f"wrote {path}", file=sys.stderr)
+
+    if args.readme:
+        table = render_schedule_table(load_days(data_dir), dt.date.today())
+        update_readme(Path(args.readme), table)
+        print(f"updated {args.readme}", file=sys.stderr)
 
     if args.do_print:
         print(json.dumps(days, indent=2, ensure_ascii=False))
