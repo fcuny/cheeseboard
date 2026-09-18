@@ -1,6 +1,8 @@
 import datetime as dt
+import json
 from pathlib import Path
 
+import pytest
 from bs4 import BeautifulSoup
 
 import scrape_cheeseboard as sc
@@ -126,3 +128,72 @@ def test_parse_ingredients_strips_parentheticals_only():
     ingredients, normalized = sc.parse_ingredients(raw)
     assert ingredients == ["Organic corn", "red onion", "mozzarella"]
     assert normalized == ["organic corn", "red onion", "mozzarella"]
+
+
+def test_render_schedule_table_skips_past_days_and_marks_closed():
+    days = [
+        {"date": "2026-09-13", "weekday": "Sun", "closed": True},
+        {"date": "2026-09-14", "weekday": "Mon", "closed": True},
+        {"date": "2026-09-15", "weekday": "Tue", "closed": False, "ingredients": ["leek", "mozzarella"]},
+    ]
+    table = sc.render_schedule_table(days, today=dt.date(2026, 9, 14))
+
+    assert "2026-09-13" not in table  # in the past relative to `today`
+    lines = table.splitlines()
+    assert lines[0] == "| Date | Day | Pizza |"
+    assert "| 2026-09-14 | Mon | _Closed_ |" in lines
+    assert "| 2026-09-15 | Tue | leek, mozzarella |" in lines
+
+
+def test_render_schedule_table_treats_missing_closed_key_as_open():
+    # Older records (scraped before the "closed" field existed) omit it.
+    days = [{"date": "2026-09-15", "weekday": "Tue", "ingredients": ["leek"]}]
+    table = sc.render_schedule_table(days, today=dt.date(2026, 9, 15))
+    assert "| 2026-09-15 | Tue | leek |" in table
+
+
+def test_render_schedule_table_empty_when_nothing_upcoming():
+    days = [{"date": "2026-09-13", "weekday": "Sun", "closed": True}]
+    table = sc.render_schedule_table(days, today=dt.date(2026, 9, 14))
+    assert table == "_No upcoming pizza schedule posted yet._"
+
+
+def test_update_readme_replaces_only_between_markers(tmp_path):
+    readme = tmp_path / "README.md"
+    readme.write_text(
+        "before\n"
+        f"{sc.README_MARKER_START}\n"
+        "stale table\n"
+        f"{sc.README_MARKER_END}\n"
+        "after\n",
+        encoding="utf-8",
+    )
+
+    sc.update_readme(readme, "fresh table")
+
+    text = readme.read_text(encoding="utf-8")
+    assert "before\n" in text
+    assert "after\n" in text
+    assert "stale table" not in text
+    assert f"{sc.README_MARKER_START}\nfresh table\n{sc.README_MARKER_END}" in text
+
+
+def test_update_readme_raises_if_markers_missing(tmp_path):
+    readme = tmp_path / "README.md"
+    readme.write_text("no markers here\n", encoding="utf-8")
+
+    with pytest.raises(SystemExit):
+        sc.update_readme(readme, "fresh table")
+
+
+def test_load_days_reads_every_file_in_data_dir(tmp_path):
+    (tmp_path / "2026-09-15.json").write_text(
+        json.dumps({"date": "2026-09-15", "weekday": "Tue", "closed": True}), encoding="utf-8"
+    )
+    (tmp_path / "2026-09-16.json").write_text(
+        json.dumps({"date": "2026-09-16", "weekday": "Wed", "closed": True}), encoding="utf-8"
+    )
+
+    days = sc.load_days(tmp_path)
+
+    assert [d["date"] for d in days] == ["2026-09-15", "2026-09-16"]

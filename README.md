@@ -8,7 +8,14 @@ A GitHub Action runs `scrape_cheeseboard.py` once a day. Each pizza is written t
 `data/<pizza-date>.json`, keyed by the pizza's own date and upserted — since the
 site usually lists the whole upcoming week at once, most days get scraped more
 than once before their date arrives, and the file for that date is simply
-overwritten each time.
+overwritten each time. The same run also rewrites the table below with
+whatever's currently upcoming in `data/`.
+
+## Upcoming pizzas
+
+<!-- PIZZA-SCHEDULE:START -->
+_No upcoming pizza schedule posted yet._
+<!-- PIZZA-SCHEDULE:END -->
 
 ## Files
 
@@ -50,4 +57,5 @@ Dependencies and script execution are managed with [uv](https://docs.astral.sh/u
 uv sync
 uv run pytest
 uv run scrape_cheeseboard.py --print
+uv run scrape_cheeseboard.py --readme README.md  # also refresh the table above
 ```
