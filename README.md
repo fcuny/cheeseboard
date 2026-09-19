@@ -14,7 +14,10 @@ whatever's currently upcoming in `data/`.
 ## Upcoming pizzas
 
 <!-- PIZZA-SCHEDULE:START -->
-_No upcoming pizza schedule posted yet._
+| Date | Day | Pizza |
+| --- | --- | --- |
+| 2026-09-19 | Sat | House made Romesco sauce, organic zucchini, red onion, Valbreso feta cheese, mozzarella |
+| 2026-09-20 | Sun | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
