@@ -16,7 +16,6 @@ whatever's currently upcoming in `data/`.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-09-19 | Sat | House made Romesco sauce, organic zucchini, red onion, Valbreso feta cheese, mozzarella |
 | 2026-09-20 | Sun | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
