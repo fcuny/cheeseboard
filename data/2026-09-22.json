@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-22",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Organic zucchini, roasted leek and onion, Valbreso feta cheese, mozzarella, garlic olive oil, organic lemon and orange zest, parsley",
+  "ingredients": [
+    "Organic zucchini",
+    "roasted leek and onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon and orange zest",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic zucchini",
+    "roasted leek and onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon and orange zest",
+    "parsley"
+  ]
+}
