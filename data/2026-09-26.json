@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-26",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "Organic tomato (Golden Rule Organics), red onion, Raclette cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Organic tomato",
+    "red onion",
+    "Raclette cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic tomato",
+    "red onion",
+    "raclette cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

@@ -16,7 +16,13 @@ whatever's currently upcoming in `data/`.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-09-20 | Sun | _Closed_ |
+| 2026-09-21 | Mon | _Closed_ |
+| 2026-09-22 | Tue | Organic zucchini, roasted leek and onion, Valbreso feta cheese, mozzarella, garlic olive oil, organic lemon and orange zest, parsley |
+| 2026-09-23 | Wed | Organic corn and baby spinach, mozzarella, house made coconut curry sauce, lime, cilantro |
+| 2026-09-24 | Thu | Organic sweet bell pepper, yellow onion, Kalamata olive, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, parsley |
+| 2026-09-25 | Fri | Cremini mushroom, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
+| 2026-09-26 | Sat | Organic tomato, red onion, Raclette cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-09-27 | Sun | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
