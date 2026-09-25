@@ -130,7 +130,7 @@ def test_parse_ingredients_strips_parentheticals_only():
     assert normalized == ["organic corn", "red onion", "mozzarella"]
 
 
-def test_render_schedule_table_skips_past_days_and_marks_closed():
+def test_render_schedule_table_skips_earlier_weeks_and_marks_closed():
     days = [
         {"date": "2026-09-13", "weekday": "Sun", "closed": True},
         {"date": "2026-09-14", "weekday": "Mon", "closed": True},
@@ -138,11 +138,54 @@ def test_render_schedule_table_skips_past_days_and_marks_closed():
     ]
     table = sc.render_schedule_table(days, today=dt.date(2026, 9, 14))
 
-    assert "2026-09-13" not in table  # in the past relative to `today`
+    assert "2026-09-13" not in table  # belongs to the previous week
     lines = table.splitlines()
     assert lines[0] == "| Date | Day | Pizza |"
     assert "| 2026-09-14 | Mon | _Closed_ |" in lines
     assert "| 2026-09-15 | Tue | leek, mozzarella |" in lines
+
+
+def test_render_schedule_table_keeps_earlier_days_of_the_current_week():
+    # Thursday: Monday through Wednesday have already passed, but they're
+    # this week's pizzas and should still be in the table.
+    days = [
+        {"date": "2026-09-13", "weekday": "Sun", "closed": True},
+        {"date": "2026-09-14", "weekday": "Mon", "closed": True},
+        {"date": "2026-09-15", "weekday": "Tue", "closed": False, "ingredients": ["leek"]},
+        {"date": "2026-09-16", "weekday": "Wed", "closed": False, "ingredients": ["corn"]},
+        {"date": "2026-09-17", "weekday": "Thu", "closed": False, "ingredients": ["olive"]},
+        {"date": "2026-09-18", "weekday": "Fri", "closed": False, "ingredients": ["cremini"]},
+    ]
+    table = sc.render_schedule_table(days, today=dt.date(2026, 9, 17))
+
+    assert "2026-09-13" not in table  # previous week, dropped
+    rows = [line.split(" | ")[0].removeprefix("| ") for line in table.splitlines()[2:]]
+    assert rows == ["2026-09-14", "2026-09-15", "2026-09-16", "2026-09-17", "2026-09-18"]
+
+
+def test_render_schedule_table_keeps_whole_week_on_sunday():
+    # Sunday is the last day of the week, so nothing has rolled off yet.
+    days = [
+        {"date": "2026-09-14", "weekday": "Mon", "closed": True},
+        {"date": "2026-09-20", "weekday": "Sun", "closed": True},
+    ]
+    table = sc.render_schedule_table(days, today=dt.date(2026, 9, 20))
+
+    assert "| 2026-09-14 | Mon | _Closed_ |" in table
+    assert "| 2026-09-20 | Sun | _Closed_ |" in table
+
+
+@pytest.mark.parametrize(
+    "today,expected",
+    [
+        ("2026-09-14", "2026-09-14"),  # Monday — already the start of the week
+        ("2026-09-17", "2026-09-14"),  # Thursday
+        ("2026-09-20", "2026-09-14"),  # Sunday — still the same week
+        ("2026-09-21", "2026-09-21"),  # the next Monday — a new week
+    ],
+)
+def test_week_start_is_the_monday_of_that_week(today, expected):
+    assert sc.week_start(dt.date.fromisoformat(today)) == dt.date.fromisoformat(expected)
 
 
 def test_render_schedule_table_treats_missing_closed_key_as_open():
@@ -152,10 +195,10 @@ def test_render_schedule_table_treats_missing_closed_key_as_open():
     assert "| 2026-09-15 | Tue | leek |" in table
 
 
-def test_render_schedule_table_empty_when_nothing_upcoming():
+def test_render_schedule_table_empty_when_nothing_this_week_or_later():
     days = [{"date": "2026-09-13", "weekday": "Sun", "closed": True}]
     table = sc.render_schedule_table(days, today=dt.date(2026, 9, 14))
-    assert table == "_No upcoming pizza schedule posted yet._"
+    assert table == "_No pizza schedule posted yet._"
 
 
 def test_update_readme_replaces_only_between_markers(tmp_path):

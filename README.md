@@ -8,10 +8,13 @@ A GitHub Action runs `scrape_cheeseboard.py` once a day. Each pizza is written t
 `data/<pizza-date>.json`, keyed by the pizza's own date and upserted — since the
 site usually lists the whole upcoming week at once, most days get scraped more
 than once before their date arrives, and the file for that date is simply
-overwritten each time. The same run also rewrites the table below with
-whatever's currently upcoming in `data/`.
+overwritten each time. The same run also rewrites the table below from
+`data/`, showing this week (Monday onwards, including days already gone by)
+plus anything further ahead the site has posted. Rows only drop off when a
+new week starts, so the whole week stays readable rather than shrinking a
+day at a time — the full history lives in `data/` regardless.
 
-## Upcoming pizzas
+## This week's pizzas
 
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |

@@ -159,7 +159,7 @@ def write_days(days: list[dict], data_dir: Path) -> list[Path]:
 def load_days(data_dir: Path) -> list[dict]:
     """Load every day record on disk, e.g. to re-render the README table.
 
-    Includes past dates — callers that want only upcoming days should
+    Includes past dates — callers that want a narrower window should
     filter by date themselves (see render_schedule_table).
     """
     return [json.loads(path.read_text(encoding="utf-8")) for path in sorted(data_dir.glob("*.json"))]
@@ -169,21 +169,30 @@ README_MARKER_START = "<!-- PIZZA-SCHEDULE:START -->"
 README_MARKER_END = "<!-- PIZZA-SCHEDULE:END -->"
 
 
-def render_schedule_table(days: list[dict], today: dt.date) -> str:
-    """Render a markdown table of today's and future days, soonest first.
+def week_start(today: dt.date) -> dt.date:
+    """The Monday of the week `today` falls in."""
+    return today - dt.timedelta(days=today.weekday())
 
-    Closed days are shown too (so e.g. a weekly closure doesn't look like a
-    gap in the table), just without a pizza column value.
+
+def render_schedule_table(days: list[dict], today: dt.date) -> str:
+    """Render a markdown table of this week's and future days, soonest first.
+
+    The cutoff is the Monday of the current week, not today, so the days
+    already gone by this week stay in the table instead of disappearing one
+    at a time — the whole week reads as a unit, and rows only drop off when
+    a new week starts. Closed days are shown too (so e.g. a weekly closure
+    doesn't look like a gap), just without a pizza column value.
     """
-    upcoming = sorted(
-        (day for day in days if dt.date.fromisoformat(day["date"]) >= today),
+    cutoff = week_start(today)
+    shown = sorted(
+        (day for day in days if dt.date.fromisoformat(day["date"]) >= cutoff),
         key=lambda day: day["date"],
     )
-    if not upcoming:
-        return "_No upcoming pizza schedule posted yet._"
+    if not shown:
+        return "_No pizza schedule posted yet._"
 
     lines = ["| Date | Day | Pizza |", "| --- | --- | --- |"]
-    for day in upcoming:
+    for day in shown:
         pizza = "_Closed_" if day.get("closed", False) else ", ".join(day["ingredients"])
         lines.append(f"| {day['date']} | {day['weekday']} | {pizza} |")
     return "\n".join(lines)
