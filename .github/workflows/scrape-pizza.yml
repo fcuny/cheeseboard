@@ -45,3 +45,4 @@ jobs:
           author: "pizza-bot <pizza-bot@users.noreply.github.com>"
           committer: "pizza-bot <pizza-bot@users.noreply.github.com>"
           labels: pizza-data
+          assignees: fcuny
