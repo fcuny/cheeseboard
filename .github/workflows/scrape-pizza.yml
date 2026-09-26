@@ -13,9 +13,9 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@v10.2.0
 
       - run: uv sync
 
@@ -27,7 +27,7 @@ jobs:
         run: echo "today=$(date -u +%F)" >> "$GITHUB_OUTPUT"
 
       - name: Open PR with any new/changed data
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Update pizza schedule (${{ steps.date.outputs.today }})"
           title: "Pizza schedule update — ${{ steps.date.outputs.today }}"
