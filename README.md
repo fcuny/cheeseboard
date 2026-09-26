@@ -26,6 +26,7 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-09-25 | Fri | Cremini mushroom, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
 | 2026-09-26 | Sat | Organic tomato, red onion, Raclette cheese, mozzarella, garlic olive oil, oregano, parsley |
 | 2026-09-27 | Sun | _Closed_ |
+| 2026-09-28 | Mon | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
