@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-29",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Organic Early Girl tomato (Golden Rule Organics), red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Organic Early Girl tomato",
+    "red onion",
+    "mozzarella",
+    "toasted garlic Parmesan",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic early girl tomato",
+    "red onion",
+    "mozzarella",
+    "toasted garlic parmesan",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

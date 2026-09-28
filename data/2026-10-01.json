@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-01",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Organic heirloom tomato (Oya Organics), red onion, Voralberger Berkase Alpine cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Organic heirloom tomato",
+    "red onion",
+    "Voralberger Berkase Alpine cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic heirloom tomato",
+    "red onion",
+    "voralberger berkase alpine cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

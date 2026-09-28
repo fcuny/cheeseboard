@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-30",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "Local corn, organic San Marzano tomato (Oya Organics), Valbreso feta cheese, mozzarella, basil Parmesan",
+  "ingredients": [
+    "Local corn",
+    "organic San Marzano tomato",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "basil Parmesan"
+  ],
+  "ingredients_normalized": [
+    "local corn",
+    "organic san marzano tomato",
+    "valbreso feta cheese",
+    "mozzarella",
+    "basil parmesan"
+  ]
+}
