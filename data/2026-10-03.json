@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-03",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "Organic heirloom tomato (Oya Organics, The Peach Farm), fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil",
+  "ingredients": [
+    "Organic heirloom tomato",
+    "fresh mozzarella made in Berkeley by Belfiore",
+    "mozzarella",
+    "garlic olive oil",
+    "basil"
+  ],
+  "ingredients_normalized": [
+    "organic heirloom tomato",
+    "fresh mozzarella made in berkeley by belfiore",
+    "mozzarella",
+    "garlic olive oil",
+    "basil"
+  ]
+}

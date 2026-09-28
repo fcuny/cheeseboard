@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-02",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Organic cherry tomato (Golden Rule Organics, Oya Organics), red onion, Valbreso feta cheese, mozzarella, lemon juice, garlic olive oil, organic lemon zest, cilantro",
+  "ingredients": [
+    "Organic cherry tomato",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "lemon juice",
+    "garlic olive oil",
+    "organic lemon zest",
+    "cilantro"
+  ],
+  "ingredients_normalized": [
+    "organic cherry tomato",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "lemon juice",
+    "garlic olive oil",
+    "organic lemon zest",
+    "cilantro"
+  ]
+}
