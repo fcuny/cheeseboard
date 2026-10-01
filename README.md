@@ -25,6 +25,8 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-10-01 | Thu | Organic heirloom tomato, red onion, Voralberger Berkase Alpine cheese, mozzarella, garlic olive oil, oregano, parsley |
 | 2026-10-02 | Fri | Organic cherry tomato, red onion, Valbreso feta cheese, mozzarella, lemon juice, garlic olive oil, organic lemon zest, cilantro |
 | 2026-10-03 | Sat | Organic heirloom tomato, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
+| 2026-10-04 | Sun | _Closed_ |
+| 2026-10-05 | Mon | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
