@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Artichoke, organic baby spinach, fresh ricotta made in Berkeley by Belfiore, mozzarella, garlic olive oil, organic lemon zest, parsley",
+  "ingredients": [
+    "Artichoke",
+    "organic baby spinach",
+    "fresh ricotta made in Berkeley by Belfiore",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon zest",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "artichoke",
+    "organic baby spinach",
+    "fresh ricotta made in berkeley by belfiore",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon zest",
+    "parsley"
+  ]
+}
