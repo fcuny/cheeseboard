@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Sweet bell pepper, yellow onion, aged Asiago cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Sweet bell pepper",
+    "yellow onion",
+    "aged Asiago cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "sweet bell pepper",
+    "yellow onion",
+    "aged asiago cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

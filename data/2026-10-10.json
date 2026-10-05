@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-10",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "Organic tomato (Golden Rule Organics), local corn, mozzarella, garlic olive oil, basil Parmesan",
+  "ingredients": [
+    "Organic tomato",
+    "local corn",
+    "mozzarella",
+    "garlic olive oil",
+    "basil Parmesan"
+  ],
+  "ingredients_normalized": [
+    "organic tomato",
+    "local corn",
+    "mozzarella",
+    "garlic olive oil",
+    "basil parmesan"
+  ]
+}

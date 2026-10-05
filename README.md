@@ -19,14 +19,12 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-09-28 | Mon | _Closed_ |
-| 2026-09-29 | Tue | Organic Early Girl tomato, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
-| 2026-09-30 | Wed | Local corn, organic San Marzano tomato, Valbreso feta cheese, mozzarella, basil Parmesan |
-| 2026-10-01 | Thu | Organic heirloom tomato, red onion, Voralberger Berkase Alpine cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-02 | Fri | Organic cherry tomato, red onion, Valbreso feta cheese, mozzarella, lemon juice, garlic olive oil, organic lemon zest, cilantro |
-| 2026-10-03 | Sat | Organic heirloom tomato, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
-| 2026-10-04 | Sun | _Closed_ |
 | 2026-10-05 | Mon | _Closed_ |
+| 2026-10-06 | Tue | Cremini mushroom, red onion, Voralberger Berkase Alpine cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-10-07 | Wed | Organic tomato, red onion, aged Provolone cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-10-08 | Thu | Artichoke, organic baby spinach, fresh ricotta made in Berkeley by Belfiore, mozzarella, garlic olive oil, organic lemon zest, parsley |
+| 2026-10-09 | Fri | Sweet bell pepper, yellow onion, aged Asiago cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-10-10 | Sat | Organic tomato, local corn, mozzarella, garlic olive oil, basil Parmesan |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files

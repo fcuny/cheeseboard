@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-06",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Cremini mushroom, red onion, Voralberger Berkase Alpine cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Cremini mushroom",
+    "red onion",
+    "Voralberger Berkase Alpine cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cremini mushroom",
+    "red onion",
+    "voralberger berkase alpine cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}
