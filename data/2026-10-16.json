@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-16",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Local corn, red onion, Valbreso feta cheese, mozzarella, house made avocado sauce, cilantro",
+  "ingredients": [
+    "Local corn",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "house made avocado sauce",
+    "cilantro"
+  ],
+  "ingredients_normalized": [
+    "local corn",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "house made avocado sauce",
+    "cilantro"
+  ]
+}

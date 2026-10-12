@@ -19,12 +19,12 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-10-05 | Mon | _Closed_ |
-| 2026-10-06 | Tue | Cremini mushroom, red onion, Voralberger Berkase Alpine cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-07 | Wed | Organic tomato, red onion, aged Provolone cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-08 | Thu | Artichoke, organic baby spinach, fresh ricotta made in Berkeley by Belfiore, mozzarella, garlic olive oil, organic lemon zest, parsley |
-| 2026-10-09 | Fri | Sweet bell pepper, yellow onion, aged Asiago cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-10 | Sat | Organic tomato, local corn, mozzarella, garlic olive oil, basil Parmesan |
+| 2026-10-12 | Mon | _Closed_ |
+| 2026-10-13 | Tue | Organic heirloom tomato, red onion, aged Asiago cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-10-14 | Wed | Cauliflower, caramelized onion, pistachio, mozzarella, Montalbán cheese, garlic olive oil, parsley |
+| 2026-10-15 | Thu | Organic Warren pear, Danish blue cheese, mozzarella, arugula, lemon dressing |
+| 2026-10-16 | Fri | Local corn, red onion, Valbreso feta cheese, mozzarella, house made avocado sauce, cilantro |
+| 2026-10-17 | Sat | House made Romesco sauce, organic zucchini, red onion, mozzarella |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
