@@ -20,7 +20,15 @@ jobs:
       - run: uv sync
 
       - name: Scrape schedule (writes/upserts one data/<pizza-date>.json per day listed, refreshes README table)
-        run: uv run scrape_cheeseboard.py --data-dir data --readme README.md
+        run: uv run scrape_cheeseboard.py --data-dir data --readme README.md --dump-html "$RUNNER_TEMP/pizza-schedule.html"
+
+      - name: Upload fetched page for debugging
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: pizza-schedule-page
+          path: ${{ runner.temp }}/pizza-schedule.html
+          if-no-files-found: ignore
 
       - name: Today's date
         id: date

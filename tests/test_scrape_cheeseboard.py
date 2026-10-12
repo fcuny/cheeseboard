@@ -240,3 +240,36 @@ def test_load_days_reads_every_file_in_data_dir(tmp_path):
     days = sc.load_days(tmp_path)
 
     assert [d["date"] for d in days] == ["2026-09-15", "2026-09-16"]
+
+
+def test_describe_page_reports_missing_container():
+    soup = BeautifulSoup("<html><head><title>Just a moment...</title></head><body>checking</body></html>", "html.parser")
+    lines = sc.describe_page(soup)
+    assert "page title: 'Just a moment...'" in lines
+    assert "div.daily-pizza containers: 0, articles inside: 0" in lines
+    assert any(line.startswith("body text:") and "checking" in line for line in lines)
+
+
+def test_describe_page_reports_empty_container():
+    soup = BeautifulSoup('<div class="daily-pizza"><p>Check back soon</p></div>', "html.parser")
+    lines = sc.describe_page(soup)
+    assert "div.daily-pizza containers: 1, articles inside: 0" in lines
+    assert "div.daily-pizza text: 'Check back soon'" in lines
+
+
+def test_describe_page_explains_each_skipped_article():
+    html = """
+    <div class="daily-pizza">
+      <article><div class="date"><p>Sunday the 11th</p></div><div class="menu"></div></article>
+      <article><div class="date"><p>Sun Oct 11</p></div><div class="menu"><p>See you tomorrow</p></div></article>
+      <article><div class="menu"></div></article>
+    </div>
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    assert sc.parse_schedule(soup, today=dt.date(2026, 10, 11)) == []
+    skipped = [line for line in sc.describe_page(soup) if line.startswith("skipped article:")]
+    assert skipped == [
+        "skipped article: unrecognized date text 'Sunday the 11th'",
+        "skipped article: Sun Oct 11: no Pizza heading and no 'closed' text; menu text 'See you tomorrow'",
+        "skipped article: missing div.date p",
+    ]

@@ -38,10 +38,14 @@ WHITESPACE_RE = re.compile(r"\s+")
 CLOSED_RE = re.compile(r"closed", re.IGNORECASE)
 
 
-def fetch_soup(url: str = URL) -> BeautifulSoup:
+def fetch_page(url: str = URL) -> requests.Response:
     resp = requests.get(url, timeout=15, headers={"User-Agent": "cheeseboard-pizza-stats/1.0"})
     resp.raise_for_status()
-    return BeautifulSoup(resp.text, "html.parser")
+    return resp
+
+
+def fetch_soup(url: str = URL) -> BeautifulSoup:
+    return BeautifulSoup(fetch_page(url).text, "html.parser")
 
 
 def resolve_year(month_abbr: str, day: int, today: dt.date) -> int:
@@ -146,6 +150,44 @@ def parse_schedule(soup: BeautifulSoup, today: dt.date | None = None) -> list[di
     return days
 
 
+def explain_skip(article) -> str:
+    """Why parse_day() returned None for this article — for failure logs only."""
+    date_p = article.select_one("div.date p")
+    menu = article.select_one("div.menu")
+    if date_p is None or menu is None:
+        missing = [name for name, el in (("div.date p", date_p), ("div.menu", menu)) if el is None]
+        return f"missing {', '.join(missing)}"
+    date_text = date_p.get_text(" ", strip=True)
+    if not DATE_RE.match(date_text):
+        return f"unrecognized date text {date_text!r}"
+    menu_text = WHITESPACE_RE.sub(" ", menu.get_text(" ", strip=True))
+    return f"{date_text}: no Pizza heading and no 'closed' text; menu text {menu_text[:200]!r}"
+
+
+def describe_page(soup: BeautifulSoup) -> list[str]:
+    """Summarize what the page actually contained when nothing was parsed.
+
+    Distinguishes "the schedule container is gone" (redesign, error page,
+    bot challenge) from "it's there but empty" (nothing posted yet) from
+    "days are listed but in a shape parse_day doesn't recognize".
+    """
+    title = soup.title.get_text(strip=True) if soup.title else None
+    lines = [f"page title: {title!r}"]
+    containers = soup.select("div.daily-pizza")
+    articles = soup.select("div.daily-pizza article")
+    lines.append(f"div.daily-pizza containers: {len(containers)}, articles inside: {len(articles)}")
+    if containers and not articles:
+        text = WHITESPACE_RE.sub(" ", containers[0].get_text(" ", strip=True))
+        lines.append(f"div.daily-pizza text: {text[:300]!r}")
+    for article in articles:
+        lines.append(f"skipped article: {explain_skip(article)}")
+    if not containers:
+        body = soup.body or soup
+        text = WHITESPACE_RE.sub(" ", body.get_text(" ", strip=True))
+        lines.append(f"body text: {text[:500]!r}")
+    return lines
+
+
 def write_days(days: list[dict], data_dir: Path) -> list[Path]:
     data_dir.mkdir(parents=True, exist_ok=True)
     written = []
@@ -216,16 +258,31 @@ def main() -> None:
     )
     parser.add_argument("--print", dest="do_print", action="store_true", help="also print the scraped days as JSON")
     parser.add_argument(
+        "--dump-html",
+        help="if no days are parsed, save the fetched page to this path for debugging",
+    )
+    parser.add_argument(
         "--readme",
         help="if set, rewrite the upcoming-pizza table between the PIZZA-SCHEDULE markers in this README file",
     )
     args = parser.parse_args()
 
-    soup = fetch_soup()
+    resp = fetch_page()
+    print(
+        f"fetched {resp.url}: HTTP {resp.status_code}, {resp.headers.get('Content-Type')}, "
+        f"{len(resp.content)} bytes",
+        file=sys.stderr,
+    )
+    soup = BeautifulSoup(resp.text, "html.parser")
     days = parse_schedule(soup)
 
     if not days:
         print("No pizza entries found — the page structure may have changed.", file=sys.stderr)
+        for line in describe_page(soup):
+            print(f"  {line}", file=sys.stderr)
+        if args.dump_html:
+            Path(args.dump_html).write_text(resp.text, encoding="utf-8")
+            print(f"saved page to {args.dump_html}", file=sys.stderr)
         sys.exit(1)
 
     data_dir = Path(args.data_dir)
