@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-14",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "Cauliflower, caramelized onion, pistachio , mozzarella, Montalbán cheese, garlic olive oil, parsley",
+  "ingredients": [
+    "Cauliflower",
+    "caramelized onion",
+    "pistachio",
+    "mozzarella",
+    "Montalbán cheese",
+    "garlic olive oil",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cauliflower",
+    "caramelized onion",
+    "pistachio",
+    "mozzarella",
+    "montalbán cheese",
+    "garlic olive oil",
+    "parsley"
+  ]
+}
