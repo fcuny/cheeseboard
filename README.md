@@ -25,6 +25,8 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-10-15 | Thu | Organic Warren pear, Danish blue cheese, mozzarella, arugula, lemon dressing |
 | 2026-10-16 | Fri | Local corn, red onion, Valbreso feta cheese, mozzarella, house made avocado sauce, cilantro |
 | 2026-10-17 | Sat | House made Romesco sauce, organic zucchini, red onion, mozzarella |
+| 2026-10-18 | Sun | _Closed_ |
+| 2026-10-19 | Mon | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
