@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% from "macros.html" import pizza_details with context %}
+{% block title %}{{ pizza.date | day }} — Cheese Board pizza stats{% endblock %}
+{% block content %}
+<section>
+  <h1>{{ pizza.date | day }}</h1>
+  {{ pizza_details(pizza, context, match) }}
+</section>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% macro ingredient_link(ingredient) -%}
+<a href="{{ root }}ingredients/{{ ingredient.slug }}.html">{{ ingredient.name }}</a>
+{%- endmacro %}
+
+{% macro ingredient_list(ingredients) -%}
+{% for i in ingredients %}{{ ingredient_link(i) }}{% if not loop.last %}, {% endif %}{% else %}nothing{% endfor %}
+{%- endmacro %}
+
+{% macro day_link(date) -%}
+<a href="{{ root }}days/{{ date.isoformat() }}.html">{{ date | day }}</a>
+{%- endmacro %}
+
+{% macro category_label(category) -%}
+{{ categories.get(category, "base") | lower }}
+{%- endmacro %}
+
+{% macro context_note(c) -%}
+{% if c.times_before == 0 %}first time ever{% else %}seen {{ c.times_before }}× before, last {{ c.last_seen | short }} ({% if c.days_since == 1 %}the day before{% else %}{{ c.days_since }} days earlier{% endif %}){% endif %}
+{%- endmacro %}
+
+{# The pizza as the site wrote it, then each ingredient against earlier pizzas, beside its closest earlier pizza. #}
+{% macro pizza_details(pizza, context, match) %}
+<p class="lead">{{ pizza.items | map(attribute=1) | unique | join(", ") }}</p>
+<div class="pizza-grid">
+  <ul class="context">
+    {% for c in context %}
+    <li{% if c.times_before == 0 %} class="is-first"{% endif %}>
+      <span class="canon">{{ ingredient_link(c.ingredient) }}</span>
+      <span class="cat">{{ category_label(c.ingredient.category) }}</span>
+      <span class="note">{% if c.written | lower != c.ingredient.name | lower %}“{{ c.written }}” · {% endif %}{{ context_note(c) }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  <div class="dejavu">
+    <h3>Déjà vu</h3>
+    {% if match %}
+    <div class="score">{{ match.score | pct }}</div>
+    <div>the same toppings as {{ day_link(match.other.date) }}</div>
+    <dl>
+      <dt>Shared</dt><dd>{{ ingredient_list(match.shared) }}</dd>
+      <dt>New</dt><dd>{{ ingredient_list(match.only_pizza) }}</dd>
+      <dt>Dropped</dt><dd>{{ ingredient_list(match.only_other) }}</dd>
+    </dl>
+    {% else %}
+    <p>Nothing like it before.</p>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{# Scraped day records (open or closed) in the order given; with_year for lists spanning months. #}
+{% macro days_table(days, with_year=False) %}
+<div class="scroll">
+<table class="days">
+  <thead><tr><th>Day</th><th>Pizza</th></tr></thead>
+  <tbody>
+  {% for d in days %}
+    {% set is_closed = d.get("closed", False) %}
+    <tr class="{{ 'is-closed' if is_closed }}{{ ' is-today' if d.date == today.isoformat() }}">
+      <td>{{ d.date | isodate | day if with_year else d.weekday ~ " " ~ (d.date | isodate | short) }}</td>
+      <td>{% if is_closed %}Closed{% else %}<a href="{{ root }}days/{{ d.date }}.html">{{ d.ingredients | join(", ") }}</a>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endmacro %}

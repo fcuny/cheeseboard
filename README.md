@@ -60,6 +60,19 @@ day at a time — the full history lives in `data/` regardless.
   The scraper only fails (non-zero exit) when it can't find *any*
   recognizable day on the page at all — a real sign the site's structure
   changed, not that the pizzeria happened to be closed.
+- `ingredients.toml` — hand-maintained ingredient taxonomy: maps each
+  scraped `ingredients_normalized` string to a canonical ingredient and a
+  category (cheese, produce, sauce, ...), so "organic tomato" and "organic
+  heirloom tomato" count as one Tomato. A scrape that brings in an unknown
+  ingredient lists it in the PR body; add it here on the PR branch before
+  merging.
+- `stats.py` + `build_site.py` + `templates/` — build the static stats site
+  (today's pizza with "last seen" context, closest earlier pizza, this
+  week, per-category leaderboards, rarities, most similar pizzas,
+  ingredient-by-week table, and a page per day and per ingredient).
+- `build-site.yml` — builds the site and deploys it to GitHub Pages on
+  every push to `main` that touches the data or the site, plus once a day
+  so "today" keeps moving.
 
 ## Local dev
 
@@ -70,4 +83,7 @@ uv sync
 uv run pytest
 uv run scrape_cheeseboard.py --print
 uv run scrape_cheeseboard.py --readme README.md  # also refresh the table above
+uv run build_site.py                             # build the site into _site/
+uv run build_site.py --today 2026-10-15          # ... as if it were another day
+uv run build_site.py --list-unmapped             # ingredients missing from ingredients.toml
 ```

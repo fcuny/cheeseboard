@@ -45,16 +45,31 @@ Repo: https://github.com/fcuny/cheeseboard (public)
    via real `workflow_dispatch` runs. Daily cron at 09:00 UTC. No failure
    notification beyond GitHub's own failed-run email (deliberate, per
    for-fun scope).
+8. **Stats site v1.** `ingredients.toml` (manual taxonomy: alias →
+   canonical ingredient + category, plus splits for "X and Y" entries),
+   `stats.py` (pure stats), `build_site.py` + `templates/` (static HTML,
+   jinja2). Shows today's/next pizza with per-ingredient "last seen"
+   context and its closest earlier pizza (Jaccard over non-base
+   ingredients), this week, per-category leaderboards, rarities, most
+   similar pairs, an ingredient × week table, data coverage, and a page per
+   day and per ingredient. "Base" ingredients (mozzarella, garlic olive oil)
+   are left out of leaderboards and similarity. `build-site.yml` deploys to
+   GitHub Pages on push to `main` + daily. The scrape PR body lists any
+   ingredient missing from the taxonomy.
+   Styled as a chalkboard menu board (`static/style.css`, one dark theme
+   on purpose); the home page features cheese, produce, onions, sauce and
+   herbs only (top 5 per leaderboard, top 3 per category in the weekly
+   table), and works down to phone width.
 
 ## Open / deferred
 - **Occasional extra pizza variants** (e.g. a separate vegan pizza section
   on the same day) — not observed yet. Current parser only captures the
   block after the first `<h3>Pizza</h3>`; revisit if/when the real site
   does this.
-- **(Stretch) Build the stats.** Once a few weeks of `data/*.json` exist:
-  ingredient frequency counts, most common pizza combos, seasonal patterns,
-  closed-day frequency.
+- **Stats site, later additions.** v1 (Done #8) is in place. Once there
+  are months of data: gaps/streaks and "overdue" ingredients, weekday
+  patterns, and farm stats (farm names are in `ingredients_raw`'s
+  parentheses, currently stripped from `ingredients`).
 
 ## Non-goals
 - No interest in salads — parser does not extract them.
-- Not building a UI/dashboard right now, just the scrape + storage pipeline.

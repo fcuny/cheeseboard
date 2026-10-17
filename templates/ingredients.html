@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "macros.html" import ingredient_link with context %}
+{% block title %}All ingredients — Cheese Board pizza stats{% endblock %}
+{% block content %}
+<section>
+  <h1>All ingredients</h1>
+  <div class="boards">
+  {% for category, ingredients in by_category.items() %}
+    <div class="board">
+      <h3>{{ categories.get(category, "Base") }}</h3>
+      <ol>
+      {% for i in ingredients %}
+        <li><span>{{ ingredient_link(i) }}</span><span class="count">{{ histories[i] | length }}</span><span></span></li>
+      {% endfor %}
+      </ol>
+    </div>
+  {% endfor %}
+  </div>
+</section>
+{% endblock %}

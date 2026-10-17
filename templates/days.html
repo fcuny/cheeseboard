@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% from "macros.html" import days_table with context %}
+{% block title %}All days — Cheese Board pizza stats{% endblock %}
+{% block content %}
+<section>
+  <h1>All days</h1>
+  {{ days_table(days, with_year=True) }}
+</section>
+{% endblock %}

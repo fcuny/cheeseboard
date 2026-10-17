@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% from "macros.html" import ingredient_link, ingredient_list, day_link, pizza_details, days_table with context %}
+{% block content %}
+<section id="today">
+{% if featured %}
+  <div class="eyebrow">
+    {% if open_today %}Today · {{ featured.pizza.date | day }}
+    {% elif featured.pizza.date > today %}No pizza today · next up {{ day_link(featured.pizza.date) }}
+    {% else %}No pizza today · latest was {{ day_link(featured.pizza.date) }}
+    {% endif %}
+  </div>
+  {{ pizza_details(featured.pizza, featured.context, featured.match) }}
+{% else %}
+  <h2>No pizzas yet</h2>
+{% endif %}
+</section>
+
+<section id="week">
+  <h2>This week</h2>
+  {% if week %}
+  {{ days_table(week) }}
+  {% else %}
+  <p class="muted">Nothing posted for this week yet.</p>
+  {% endif %}
+</section>
+
+{% if coverage %}
+<section id="numbers">
+  <dl class="facts">
+    <div><dt>Pizza days</dt><dd>{{ coverage.pizzas }}</dd></div>
+    <div><dt>Closed days</dt><dd>{{ coverage.closed }}</dd></div>
+    <div><dt>Ingredients</dt><dd>{{ ingredient_count }}</dd></div>
+    <div><dt>Per pizza</dt><dd>{{ "%.1f" | format(coverage.avg_ingredients) }}</dd></div>
+  </dl>
+  {% if coverage.missing %}
+  <p class="muted">Never scraped: {% for d in coverage.missing %}{{ d | short }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  {% endif %}
+</section>
+{% endif %}
+
+<section id="leaderboards">
+  <h2>Leaderboards</h2>
+  <div class="boards">
+  {% for category, standings in leaderboards.items() %}
+    <div class="board">
+      <h3>{{ categories[category] }}</h3>
+      <ol>
+      {% for s in standings %}
+        <li>
+          <span>{{ ingredient_link(s.ingredient) }}</span>
+          <span class="count">{{ s.count }}</span>
+          <span class="last">{{ s.last_seen | short }}</span>
+          <span class="bar"><span style="--share: {{ (100 * s.count / coverage.pizzas) | round(1) }}%"></span></span>
+        </li>
+      {% endfor %}
+      </ol>
+    </div>
+  {% endfor %}
+  </div>
+  <p class="muted">Top 5 of each; the rest are on <a href="{{ root }}ingredients/index.html">all ingredients</a>.</p>
+  {% if base %}
+  <p class="muted">
+    Left out because they're on (nearly) everything:
+    {% for s in base %}{{ ingredient_link(s.ingredient) }} ({{ s.count }}/{{ coverage.pizzas }}){% if not loop.last %}, {% endif %}{% endfor %}.
+  </p>
+  {% endif %}
+</section>
+
+<section id="seasonality">
+  <h2>Ingredients by week</h2>
+  <p class="muted">How many pizzas the top 3 of each category were on, by week starting Monday. Every ingredient's full history is on <a href="{{ root }}ingredients/index.html">its own page</a>.</p>
+  <div class="scroll" id="season-scroll">
+  <table class="season">
+    <thead>
+      <tr><th>Week of</th>{% for w in seasonality.weeks %}<th scope="col">{{ w | short }}</th>{% endfor %}</tr>
+    </thead>
+    <tbody>
+    {% for ingredient, counts in seasonality.rows %}
+      <tr{% if loop.first or seasonality.rows[loop.index0 - 1][0].category != ingredient.category %} class="cat-start"{% endif %}>
+        <th scope="row">{{ ingredient_link(ingredient) }}</th>
+        {% for n in counts %}<td data-n="{{ [n, 3] | min }}">{{ n or "" }}</td>{% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <script>
+    // Open on the most recent weeks; older ones are a scroll to the left.
+    const seasonScroll = document.getElementById("season-scroll");
+    seasonScroll.scrollLeft = seasonScroll.scrollWidth;
+  </script>
+</section>
+
+<section id="rarities">
+  <h2>Rarities</h2>
+  <p class="muted">Seen on exactly one pizza so far.</p>
+  <ul class="chips">
+  {% for a in rarities %}
+    <li>{{ ingredient_link(a.ingredient) }} <small>{{ a.pizza.date | short }}</small></li>
+  {% else %}
+    <li>None yet.</li>
+  {% endfor %}
+  </ul>
+</section>
+
+<section id="pairs">
+  <h2>Most similar pizzas</h2>
+  <ol class="pairs">
+  {% for m in pairs %}
+    <li><span class="score">{{ m.score | pct }}</span> {{ day_link(m.other.date) }} and {{ day_link(m.pizza.date) }}: {{ ingredient_list(m.shared) }}</li>
+  {% endfor %}
+  </ol>
+</section>
+
+{% if unmapped %}
+<section id="unmapped">
+  <h2>Not in the taxonomy yet</h2>
+  <p>These need an entry in <code>ingredients.toml</code>; until then each counts as its own ingredient.</p>
+  <ul class="chips">
+  {% for i in unmapped %}
+    <li>{{ ingredient_link(i) }}</li>
+  {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

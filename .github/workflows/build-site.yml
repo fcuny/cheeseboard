@@ -1,0 +1,59 @@
+name: Build and deploy stats site
+
+on:
+  # Rebuild whenever reviewed data (or the site itself) lands on main —
+  # scrape PRs only publish once they're merged.
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "ingredients.toml"
+      - "build_site.py"
+      - "stats.py"
+      - "templates/**"
+      - ".github/workflows/build-site.yml"
+  # Daily too, so "today's pizza" moves on even when a scrape brings no new
+  # data (e.g. the site already listed the whole week). 13:00 UTC is early
+  # morning in Berkeley.
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10.2.0
+
+      - run: uv sync
+
+      # No pytest gate here on purpose: an ingredient missing from
+      # ingredients.toml fails the tests but still renders fine (as
+      # "unmapped"), and shouldn't hold back the site. The scrape PR flags it.
+      - name: Build site
+        run: uv run build_site.py --data-dir data --taxonomy ingredients.toml --out _site
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
