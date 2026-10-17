@@ -154,6 +154,27 @@ def test_seasonality_keeps_empty_weeks(taxonomy):
     assert [(i.name, counts) for i, counts in season.rows] == [("Feta", [0, 0, 1]), ("Corn", [1, 0, 1])]
 
 
+def test_seasonality_filters_and_keeps_top_per_category(taxonomy):
+    pizzas = stats.to_pizzas(
+        [
+            day("2026-09-15", "Corn", "Spinach", "Feta"),
+            day("2026-09-22", "Corn", "Parsley"),
+            day("2026-09-29", "Spinach"),
+        ],
+        taxonomy,
+    )
+    season = stats.seasonality(pizzas, categories=("produce", "herb"), per_category=1)
+    # Corn and Spinach tie on 2 pizzas; Spinach was seen more recently.
+    # Feta's category isn't asked for at all.
+    assert names(i for i, _ in season.rows) == ["Spinach", "Parsley"]
+    assert len(season.weeks) == 3
+
+
+def test_leaderboards_only_requested_categories(taxonomy):
+    pizzas = stats.to_pizzas([day("2026-09-15", "Corn", "Feta", "Parsley")], taxonomy)
+    assert list(stats.leaderboards(pizzas, ("herb", "cheese"))) == ["herb", "cheese"]
+
+
 def test_coverage_reports_missing_dates(taxonomy):
     days = [day("2026-10-09", "Corn"), day("2026-10-10", "Feta"), closed("2026-10-12")]
     cov = stats.coverage(days, stats.to_pizzas(days, taxonomy))

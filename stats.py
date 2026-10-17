@@ -31,6 +31,11 @@ CATEGORIES = {
 BASE = "base"
 UNMAPPED = "unmapped"
 
+# Categories with enough variety to be worth a leaderboard and rows in the
+# weekly table on the home page. Nuts and citrus are too sparse (a couple of
+# ingredients, mostly seen once); they still have their own pages.
+FEATURED = ("cheese", "produce", "allium", "sauce", "herb")
+
 SLUG_RE = re.compile(r"[^a-z0-9]+")
 
 
@@ -202,11 +207,11 @@ class Standing:
     last_seen: dt.date
 
 
-def leaderboards(pizzas: list[Pizza]) -> dict[str, list[Standing]]:
-    """Per category (in CATEGORIES order), ingredients by how many pizzas they were on."""
+def leaderboards(pizzas: list[Pizza], categories=CATEGORIES) -> dict[str, list[Standing]]:
+    """Per category (in the order given), ingredients by how many pizzas they were on."""
     hist = histories(pizzas)
     boards: dict[str, list[Standing]] = {}
-    for category in CATEGORIES:
+    for category in categories:
         standings = [
             Standing(ingredient, len(apps), apps[-1].pizza.date)
             for ingredient, apps in hist.items()
@@ -247,8 +252,13 @@ class Seasonality:
     rows: list[tuple[Ingredient, list[int]]]  # pizzas per week, aligned with weeks
 
 
-def seasonality(pizzas: list[Pizza]) -> Seasonality:
-    """Ingredient × week counts, so seasonal swaps show up as the history grows."""
+def seasonality(pizzas: list[Pizza], categories=CATEGORIES, per_category: int | None = None) -> Seasonality:
+    """Ingredient × week counts, so seasonal swaps show up as the history grows.
+
+    Rows are grouped by category (in the order given), most frequent first,
+    ties going to the one seen most recently; per_category keeps only the
+    top few of each.
+    """
     if not pizzas:
         return Seasonality([], [])
     first, last = week_of(pizzas[0].date), week_of(pizzas[-1].date)
@@ -257,9 +267,21 @@ def seasonality(pizzas: list[Pizza]) -> Seasonality:
     counts: dict[Ingredient, list[int]] = {}
     for pizza in pizzas:
         for ingredient in pizza.toppings:
+            if ingredient.category not in categories:
+                continue
             counts.setdefault(ingredient, [0] * len(weeks))[index[week_of(pizza.date)]] += 1
-    order = list(CATEGORIES)
-    rows = sorted(counts.items(), key=lambda kv: (order.index(kv[0].category), -sum(kv[1]), kv[0].name))
+    order = list(categories)
+
+    def last_week(row: list[int]) -> int:
+        return max(n for n, count in enumerate(row) if count)
+
+    rows = sorted(
+        counts.items(),
+        key=lambda kv: (order.index(kv[0].category), -sum(kv[1]), -last_week(kv[1]), kv[0].name),
+    )
+    if per_category is not None:
+        grouped = itertools.groupby(rows, key=lambda kv: kv[0].category)
+        rows = [row for _, group in grouped for row in itertools.islice(group, per_category)]
     return Seasonality(weeks, rows)
 
 
