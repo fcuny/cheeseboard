@@ -1,0 +1,229 @@
+# Hand-maintained ingredient taxonomy for the stats site.
+#
+# Each [ingredients."<Name>"] table is one canonical ingredient: <Name> is
+# what the site displays, `category` groups it for the leaderboards, and
+# `aliases` lists every `ingredients_normalized` string from data/ that
+# means this ingredient. Spelling variants, organic/local and tomato
+# varieties all collapse here; the original wording stays visible on the
+# ingredient's own page.
+#
+# [splits] breaks up a normalized string the site writes as two ingredients
+# in one ("organic corn and baby spinach"); each part is then looked up in
+# the aliases like any other.
+#
+# Categories: base (on nearly every pizza, left out of leaderboards and
+# similarity), cheese, produce, allium, sauce, nut, herb, citrus.
+#
+# A new ingredient that isn't listed here shows up as "unmapped" in the
+# scrape PR and on the site, and fails tests/test_stats.py — add it here.
+
+[splits]
+"organic corn and baby spinach" = ["organic corn", "organic baby spinach"]
+"roasted leek and onion" = ["roasted leek", "roasted onion"]
+"organic lemon and orange zest" = ["organic lemon zest", "organic orange zest"]
+
+# --- base -----------------------------------------------------------------
+
+[ingredients."Mozzarella"]
+category = "base"
+aliases = ["mozzarella"]
+
+[ingredients."Garlic olive oil"]
+category = "base"
+aliases = ["garlic olive oil"]
+
+# --- cheese ---------------------------------------------------------------
+
+[ingredients."Valbreso feta"]
+category = "cheese"
+aliases = ["valbreso feta cheese"]
+
+[ingredients."Montalbán"]
+category = "cheese"
+aliases = ["montalbán cheese"]
+
+[ingredients."Danish blue"]
+category = "cheese"
+aliases = ["danish blue cheese"]
+
+[ingredients."Aged Asiago"]
+category = "cheese"
+aliases = ["aged asiago cheese"]
+
+[ingredients."Aged Provolone"]
+category = "cheese"
+aliases = ["aged provolone cheese"]
+
+[ingredients."Vorarlberger Bergkäse"]
+category = "cheese"
+aliases = ["voralberger berkase alpine cheese"]
+
+[ingredients."Raclette"]
+category = "cheese"
+aliases = ["raclette cheese"]
+
+[ingredients."Capricho de Cabra goat cheese"]
+category = "cheese"
+aliases = ["capricho de cabra goat cheese"]
+
+[ingredients."Queso fresco"]
+category = "cheese"
+aliases = ["queso fresco"]
+
+[ingredients."Fresh mozzarella (Belfiore)"]
+category = "cheese"
+aliases = ["fresh mozzarella made in berkeley by belfiore"]
+
+[ingredients."Fresh ricotta (Belfiore)"]
+category = "cheese"
+aliases = ["fresh ricotta made in berkeley by belfiore"]
+
+[ingredients."Basil Parmesan"]
+category = "cheese"
+aliases = ["basil parmesan"]
+
+[ingredients."Toasted garlic Parmesan"]
+category = "cheese"
+aliases = ["toasted garlic parmesan"]
+
+# --- produce --------------------------------------------------------------
+
+[ingredients."Tomato"]
+category = "produce"
+aliases = [
+    "organic tomato",
+    "organic heirloom tomato",
+    "organic early girl tomato",
+    "organic san marzano tomato",
+    "organic cherry tomato",
+]
+
+[ingredients."Corn"]
+category = "produce"
+aliases = ["organic corn", "local corn"]
+
+[ingredients."Zucchini"]
+category = "produce"
+aliases = ["organic zucchini"]
+
+[ingredients."Cremini mushroom"]
+category = "produce"
+aliases = ["cremini mushroom"]
+
+[ingredients."Sweet bell pepper"]
+category = "produce"
+aliases = ["sweet bell pepper", "organic sweet bell pepper"]
+
+[ingredients."Warren pear"]
+category = "produce"
+aliases = ["organic warren pear"]
+
+[ingredients."Baby spinach"]
+category = "produce"
+aliases = ["organic baby spinach"]
+
+[ingredients."Arugula"]
+category = "produce"
+aliases = ["arugula"]
+
+[ingredients."Artichoke"]
+category = "produce"
+aliases = ["artichoke"]
+
+[ingredients."Cauliflower"]
+category = "produce"
+aliases = ["cauliflower"]
+
+[ingredients."Kalamata olive"]
+category = "produce"
+aliases = ["kalamata olive"]
+
+# --- allium ---------------------------------------------------------------
+
+[ingredients."Red onion"]
+category = "allium"
+aliases = ["red onion"]
+
+[ingredients."Yellow onion"]
+category = "allium"
+aliases = ["yellow onion"]
+
+[ingredients."Caramelized onion"]
+category = "allium"
+aliases = ["caramelized onion"]
+
+[ingredients."Onion"]
+category = "allium"
+aliases = ["roasted onion"]
+
+[ingredients."Leek"]
+category = "allium"
+aliases = ["leek", "roasted leek"]
+
+# --- sauce ----------------------------------------------------------------
+
+[ingredients."Romesco sauce"]
+category = "sauce"
+aliases = ["house made romesco sauce"]
+
+[ingredients."Spiced crema"]
+category = "sauce"
+aliases = ["house made spiced crema"]
+
+[ingredients."Coconut curry sauce"]
+category = "sauce"
+aliases = ["house made coconut curry sauce"]
+
+[ingredients."Avocado sauce"]
+category = "sauce"
+aliases = ["house made avocado sauce"]
+
+[ingredients."Lemon dressing"]
+category = "sauce"
+aliases = ["lemon dressing"]
+
+# --- nut ------------------------------------------------------------------
+
+[ingredients."Walnut"]
+category = "nut"
+aliases = ["walnut"]
+
+[ingredients."Pistachio"]
+category = "nut"
+aliases = ["pistachio"]
+
+# --- herb -----------------------------------------------------------------
+
+[ingredients."Parsley"]
+category = "herb"
+aliases = ["parsley"]
+
+[ingredients."Oregano"]
+category = "herb"
+aliases = ["oregano"]
+
+[ingredients."Cilantro"]
+category = "herb"
+aliases = ["cilantro"]
+
+[ingredients."Basil"]
+category = "herb"
+aliases = ["basil"]
+
+# --- citrus ---------------------------------------------------------------
+
+[ingredients."Lemon zest"]
+category = "citrus"
+aliases = ["organic lemon zest"]
+
+[ingredients."Orange zest"]
+category = "citrus"
+aliases = ["organic orange zest"]
+
+[ingredients."Lemon juice"]
+category = "citrus"
+aliases = ["lemon juice"]
+
+[ingredients."Lime"]
+category = "citrus"
+aliases = ["lime"]

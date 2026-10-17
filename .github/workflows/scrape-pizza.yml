@@ -34,17 +34,32 @@ jobs:
         id: date
         run: echo "today=$(date -u +%F)" >> "$GITHUB_OUTPUT"
 
+      - name: Write PR body (flags ingredients missing from ingredients.toml)
+        run: |
+          unmapped="$(uv run build_site.py --data-dir data --taxonomy ingredients.toml --list-unmapped)"
+          {
+            echo "Automated pizza schedule scrape for ${{ steps.date.outputs.today }}."
+            echo
+            echo "Review the diff under \`data/\` before merging — this is also the"
+            echo "place to catch scraper bugs (bad parsing, stray parentheticals,"
+            echo "wrong date) before they land on \`main\`."
+            if [ -n "$unmapped" ]; then
+              echo
+              echo "### Ingredients missing from \`ingredients.toml\`"
+              echo
+              echo "Add these to the taxonomy (on this branch) before merging, or the"
+              echo "stats site will count each as its own \"unmapped\" ingredient:"
+              echo
+              echo "$unmapped"
+            fi
+          } > "$RUNNER_TEMP/pr-body.md"
+
       - name: Open PR with any new/changed data
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Update pizza schedule (${{ steps.date.outputs.today }})"
           title: "Pizza schedule update — ${{ steps.date.outputs.today }}"
-          body: |
-            Automated pizza schedule scrape for ${{ steps.date.outputs.today }}.
-
-            Review the diff under `data/` before merging — this is also the
-            place to catch scraper bugs (bad parsing, stray parentheticals,
-            wrong date) before they land on `main`.
+          body-path: ${{ runner.temp }}/pr-body.md
           branch: "pizza-schedule/${{ steps.date.outputs.today }}"
           delete-branch: true
           add-paths: |

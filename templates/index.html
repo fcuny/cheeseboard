@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% from "macros.html" import ingredient_link, ingredient_list, day_link, pizza_details with context %}
+{% block content %}
+<h1>Cheese Board pizza stats</h1>
+
+<section id="today">
+{% if featured %}
+  {% if open_today %}
+  <h2>Today's pizza — {{ featured.pizza.date | day }}</h2>
+  {% elif featured.pizza.date > today %}
+  <h2>No pizza today. Next up: {{ day_link(featured.pizza.date) }}</h2>
+  {% else %}
+  <h2>No pizza today. Latest: {{ day_link(featured.pizza.date) }}</h2>
+  {% endif %}
+  {{ pizza_details(featured.pizza, featured.context, featured.match) }}
+{% else %}
+  <h2>No pizzas yet</h2>
+{% endif %}
+</section>
+
+<section id="week">
+<h2>This week</h2>
+{% if week %}
+<table>
+  <thead><tr><th>Date</th><th>Pizza</th></tr></thead>
+  <tbody>
+  {% for d in week %}
+    <tr>
+      <td>{{ d.weekday }} {{ d.date }}</td>
+      <td>{% if d.get("closed") %}<em>Closed</em>{% else %}<a href="{{ root }}days/{{ d.date }}.html">{{ d.ingredients | join(", ") }}</a>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Nothing posted for this week yet.</p>
+{% endif %}
+</section>
+
+<section id="leaderboards">
+<h2>Leaderboards</h2>
+{% for category, standings in leaderboards.items() %}
+<h3>{{ categories[category] }}</h3>
+<table>
+  <thead><tr><th>Ingredient</th><th>Pizzas</th><th>Last seen</th></tr></thead>
+  <tbody>
+  {% for s in standings %}
+    <tr><td>{{ ingredient_link(s.ingredient) }}</td><td>{{ s.count }}</td><td>{{ s.last_seen | short }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endfor %}
+{% if base and coverage %}
+<p>
+  Left out of the leaderboards because they're on (nearly) everything:
+  {% for s in base %}{{ ingredient_link(s.ingredient) }} ({{ s.count }}/{{ coverage.pizzas }}){% if not loop.last %}, {% endif %}{% endfor %}.
+</p>
+{% endif %}
+</section>
+
+<section id="rarities">
+<h2>Rarities</h2>
+<p>Seen on exactly one pizza so far.</p>
+<ul>
+{% for a in rarities %}
+  <li>{{ ingredient_link(a.ingredient) }} — {{ day_link(a.pizza.date) }}</li>
+{% else %}
+  <li>None.</li>
+{% endfor %}
+</ul>
+</section>
+
+<section id="pairs">
+<h2>Most similar pizzas</h2>
+<ol>
+{% for m in pairs %}
+  <li>
+    {{ day_link(m.other.date) }} and {{ day_link(m.pizza.date) }}: {{ m.score | pct }} the same toppings
+    (shared: {{ ingredient_list(m.shared) }})
+  </li>
+{% endfor %}
+</ol>
+</section>
+
+<section id="seasonality">
+<h2>Ingredients by week</h2>
+<p>How many pizzas each ingredient was on, per week (weeks start Monday). Base ingredients left out.</p>
+<table>
+  <thead>
+    <tr><th>Ingredient</th>{% for w in seasonality.weeks %}<th>{{ w | short }}</th>{% endfor %}</tr>
+  </thead>
+  <tbody>
+  {% for ingredient, counts in seasonality.rows %}
+    <tr>
+      <td>{{ ingredient_link(ingredient) }}</td>
+      {% for n in counts %}<td>{{ n or "" }}</td>{% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</section>
+
+{% if coverage %}
+<section id="coverage">
+<h2>About the data</h2>
+<ul>
+  <li>{{ coverage.first | day }} to {{ coverage.last | day }}</li>
+  <li>{{ coverage.pizzas }} pizza days, {{ coverage.closed }} closed days</li>
+  <li>{{ "%.1f" | format(coverage.avg_ingredients) }} ingredients per pizza on average</li>
+  <li>Days never scraped: {% for d in coverage.missing %}{{ d | short }}{% if not loop.last %}, {% endif %}{% else %}none{% endfor %}</li>
+</ul>
+</section>
+{% endif %}
+
+{% if unmapped %}
+<section id="unmapped">
+<h2>Not in the taxonomy yet</h2>
+<p>These need an entry in <code>ingredients.toml</code>; until then each counts as its own ingredient.</p>
+<ul>
+{% for i in unmapped %}
+  <li>{{ ingredient_link(i) }}</li>
+{% endfor %}
+</ul>
+</section>
+{% endif %}
+{% endblock %}

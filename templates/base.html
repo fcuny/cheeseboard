@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Cheese Board pizza stats{% endblock %}</title>
+</head>
+<body>
+<nav>
+  <a href="{{ root }}index.html">Home</a> ·
+  <a href="{{ root }}days/index.html">All days</a> ·
+  <a href="{{ root }}ingredients/index.html">All ingredients</a>
+</nav>
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer>
+  <p>Built {{ today | day }} from the <a href="https://cheeseboardcollective.coop/pizza/pizza-schedule/">Cheese Board pizza schedule</a>.</p>
+</footer>
+</body>
+</html>

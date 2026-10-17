@@ -1,0 +1,35 @@
+{% macro ingredient_link(ingredient) -%}
+<a href="{{ root }}ingredients/{{ ingredient.slug }}.html">{{ ingredient.name }}</a>
+{%- endmacro %}
+
+{% macro ingredient_list(ingredients) -%}
+{% for i in ingredients %}{{ ingredient_link(i) }}{% if not loop.last %}, {% endif %}{% else %}nothing{% endfor %}
+{%- endmacro %}
+
+{% macro day_link(date) -%}
+<a href="{{ root }}days/{{ date.isoformat() }}.html">{{ date | day }}</a>
+{%- endmacro %}
+
+{% macro context_note(c) -%}
+{% if c.times_before == 0 %}first time ever{% else %}seen {{ c.times_before }}× before, last {% if c.days_since == 1 %}the day before{% else %}{{ c.days_since }} days earlier{% endif %} ({{ c.last_seen | short }}){% endif %}
+{%- endmacro %}
+
+{# A pizza's ingredients as the site wrote them, how each relates to earlier pizzas, and its closest earlier pizza. #}
+{% macro pizza_details(pizza, context, match) %}
+<ul>
+  {% for c in context %}
+  <li>{{ c.written }} → {{ ingredient_link(c.ingredient) }} <small>({{ c.ingredient.category }}; {{ context_note(c) }})</small></li>
+  {% endfor %}
+</ul>
+<h3>Déjà vu</h3>
+{% if match %}
+<p>Closest earlier pizza: {{ day_link(match.other.date) }}, {{ match.score | pct }} the same toppings.</p>
+<ul>
+  <li>Shared: {{ ingredient_list(match.shared) }}</li>
+  <li>New this time: {{ ingredient_list(match.only_pizza) }}</li>
+  <li>Not this time: {{ ingredient_list(match.only_other) }}</li>
+</ul>
+{% else %}
+<p>Nothing like it before.</p>
+{% endif %}
+{% endmacro %}

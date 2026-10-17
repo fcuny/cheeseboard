@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "macros.html" import ingredient_link with context %}
+{% block title %}All ingredients — Cheese Board pizza stats{% endblock %}
+{% block content %}
+<h1>All ingredients</h1>
+{% for category, ingredients in by_category.items() %}
+<h2>{{ categories.get(category, "Base") }}</h2>
+<ul>
+  {% for i in ingredients %}
+  <li>{{ ingredient_link(i) }} ({{ histories[i] | length }})</li>
+  {% endfor %}
+</ul>
+{% endfor %}
+{% endblock %}
