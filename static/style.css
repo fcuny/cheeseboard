@@ -39,7 +39,7 @@ header.site { display: flex; flex-wrap: wrap; justify-content: space-between; al
 .brand { font-family: var(--hand); font-size: 34px; line-height: 1; text-decoration: none; }
 .brand small { font-family: var(--body); font-size: 13px; color: var(--dust); display: block; letter-spacing: .04em; }
 header.site nav { display: flex; gap: 16px; flex-wrap: wrap; }
-header.site nav a { color: var(--dust); text-decoration: none; border-bottom: 1px dashed var(--smudge); }
+header.site nav a { color: var(--dust); text-decoration: none; border-bottom: 1px dashed var(--smudge); padding-block: 6px; }
 header.site nav a:hover { color: var(--chalk); }
 footer { color: var(--dust); font-size: 13px; }
 
@@ -108,9 +108,16 @@ td { padding: 8px 12px 8px 0; border-top: 1px dashed var(--smudge); }
 }
 
 /* --- ingredients by week ----------------------------------------------- */
-.season td { border-top: 0; padding: 4px; min-width: 3.2em; text-align: center; font-family: var(--hand); font-size: 20px; line-height: 1; }
-.season th[scope="col"] { text-align: center; white-space: nowrap; }
-.season th[scope="row"] { font-size: 15px; text-transform: none; letter-spacing: 0; color: var(--chalk); white-space: nowrap; padding-right: 16px; }
+.season td { border-top: 0; padding: 4px; min-width: 2.6rem; text-align: center; font-family: var(--hand); font-size: 20px; line-height: 1; }
+.season th[scope="col"] { text-align: center; white-space: nowrap; padding-inline: 4px; }
+/* Weeks pile up to the right, so the ingredient column stays pinned while
+   the table scrolls (and the page starts it scrolled to the latest week). */
+.season th:first-child {
+  position: sticky; left: 0; z-index: 1; background: var(--slate);
+  font-size: 15px; text-transform: none; letter-spacing: 0; color: var(--chalk);
+  white-space: nowrap; padding-right: 12px; border-right: 1px dashed var(--smudge);
+}
+.season thead th:first-child { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--dust); }
 .season td[data-n="0"]::after { content: "–"; color: var(--smudge); }
 .season td[data-n="3"] { color: var(--yellow); }
 .season tr.cat-start th, .season tr.cat-start td { border-top: 1px dashed var(--smudge); padding-top: 10px; }
@@ -124,3 +131,19 @@ td { padding: 8px 12px 8px 0; border-top: 1px dashed var(--smudge); }
 .pairs .score { font-size: 26px; }
 .columns { columns: 16rem; column-gap: 32px; }
 .columns li { break-inside: avoid; padding: 2px 0; }
+
+/* --- phones ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  body { padding-block: 20px 40px; }
+  .page, main { gap: 32px; }
+  main > section + section { padding-top: 24px; }
+  .brand { font-size: 28px; }
+  h1, h2 { font-size: 28px; }
+  h3 { font-size: 22px; }
+  .score { font-size: 44px; }
+  .facts { gap: 12px 24px; }
+  .facts dd { font-size: 30px; }
+  .dejavu { padding: 12px; }
+  td { padding-right: 8px; }
+  .season th[scope="row"] a { display: block; max-width: 9.5rem; overflow: hidden; text-overflow: ellipsis; }
+}

@@ -68,7 +68,7 @@
 <section id="seasonality">
   <h2>Ingredients by week</h2>
   <p class="muted">How many pizzas the top 3 of each category were on, by week starting Monday. Every ingredient's full history is on <a href="{{ root }}ingredients/index.html">its own page</a>.</p>
-  <div class="scroll">
+  <div class="scroll" id="season-scroll">
   <table class="season">
     <thead>
       <tr><th>Week of</th>{% for w in seasonality.weeks %}<th scope="col">{{ w | short }}</th>{% endfor %}</tr>
@@ -83,6 +83,11 @@
     </tbody>
   </table>
   </div>
+  <script>
+    // Open on the most recent weeks; older ones are a scroll to the left.
+    const seasonScroll = document.getElementById("season-scroll");
+    seasonScroll.scrollLeft = seasonScroll.scrollWidth;
+  </script>
 </section>
 
 <section id="rarities">
