@@ -207,8 +207,11 @@ class Standing:
     last_seen: dt.date
 
 
-def leaderboards(pizzas: list[Pizza], categories=CATEGORIES) -> dict[str, list[Standing]]:
-    """Per category (in the order given), ingredients by how many pizzas they were on."""
+def leaderboards(pizzas: list[Pizza], categories=CATEGORIES, per_category: int | None = None) -> dict[str, list[Standing]]:
+    """Per category (in the order given), ingredients by how many pizzas they were on.
+
+    Ties go to the one seen most recently; per_category keeps only the top few.
+    """
     hist = histories(pizzas)
     boards: dict[str, list[Standing]] = {}
     for category in categories:
@@ -219,7 +222,7 @@ def leaderboards(pizzas: list[Pizza], categories=CATEGORIES) -> dict[str, list[S
         ]
         if standings:
             standings.sort(key=lambda s: (-s.count, -s.last_seen.toordinal(), s.ingredient.name))
-            boards[category] = standings
+            boards[category] = standings[:per_category]
     return boards
 
 

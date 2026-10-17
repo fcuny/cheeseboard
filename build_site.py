@@ -97,7 +97,7 @@ def build(days: list[dict], taxonomy: stats.Taxonomy, out: Path, today: dt.date)
         featured=day_page(featured) if featured else None,
         open_today=featured is not None and featured.date == today,
         week=sorted((d for d in days if dt.date.fromisoformat(d["date"]) >= cutoff), key=lambda d: d["date"]),
-        leaderboards=stats.leaderboards(pizzas, stats.FEATURED),
+        leaderboards=stats.leaderboards(pizzas, stats.FEATURED, per_category=5),
         base=stats.base_counts(pizzas),
         rarities=stats.rarities(pizzas),
         pairs=stats.most_similar_pairs(pizzas),

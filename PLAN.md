@@ -56,6 +56,10 @@ Repo: https://github.com/fcuny/cheeseboard (public)
    are left out of leaderboards and similarity. `build-site.yml` deploys to
    GitHub Pages on push to `main` + daily. The scrape PR body lists any
    ingredient missing from the taxonomy.
+   Styled as a chalkboard menu board (`static/style.css`, one dark theme
+   on purpose); the home page features cheese, produce, onions, sauce and
+   herbs only (top 5 per leaderboard, top 3 per category in the weekly
+   table), and works down to phone width.
 
 ## Open / deferred
 - **Occasional extra pizza variants** (e.g. a separate vegan pizza section
@@ -65,8 +69,7 @@ Repo: https://github.com/fcuny/cheeseboard (public)
 - **Stats site, later additions.** v1 (Done #8) is in place. Once there
   are months of data: gaps/streaks and "overdue" ingredients, weekday
   patterns, and farm stats (farm names are in `ingredients_raw`'s
-  parentheses, currently stripped from `ingredients`). Design is still
-  bare HTML.
+  parentheses, currently stripped from `ingredients`).
 
 ## Non-goals
 - No interest in salads — parser does not extract them.

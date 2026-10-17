@@ -175,6 +175,15 @@ def test_leaderboards_only_requested_categories(taxonomy):
     assert list(stats.leaderboards(pizzas, ("herb", "cheese"))) == ["herb", "cheese"]
 
 
+def test_leaderboards_keep_top_per_category(taxonomy):
+    pizzas = stats.to_pizzas(
+        [day("2026-09-15", "Corn", "Spinach"), day("2026-09-16", "Corn"), day("2026-09-17", "Spinach")], taxonomy
+    )
+    # Tie on 2 pizzas each; Spinach was seen more recently.
+    [top] = stats.leaderboards(pizzas, ("produce",), per_category=1)["produce"]
+    assert (top.ingredient.name, top.count) == ("Spinach", 2)
+
+
 def test_coverage_reports_missing_dates(taxonomy):
     days = [day("2026-10-09", "Corn"), day("2026-10-10", "Feta"), closed("2026-10-12")]
     cov = stats.coverage(days, stats.to_pizzas(days, taxonomy))
