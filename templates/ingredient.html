@@ -1,26 +1,33 @@
 {% extends "base.html" %}
-{% from "macros.html" import day_link with context %}
+{% from "macros.html" import day_link, category_label with context %}
 {% block title %}{{ ingredient.name }} — Cheese Board pizza stats{% endblock %}
 {% block content %}
-<h1>{{ ingredient.name }}</h1>
-<p>
-  {{ categories.get(ingredient.category, "Base") }}.
-  On {{ appearances | length }} of {{ total }} pizzas, first on {{ day_link(appearances[-1].pizza.date) }}.
-</p>
-{% if variants | length > 1 %}
-<p>Written as: {{ variants | join("; ") }}.</p>
-{% endif %}
-<h2>Every pizza with it</h2>
-<table>
-  <thead><tr><th>Date</th><th>Written as</th><th>Whole pizza</th></tr></thead>
-  <tbody>
-  {% for a in appearances %}
-    <tr>
-      <td>{{ day_link(a.pizza.date) }}</td>
-      <td>{{ a.written }}</td>
-      <td>{{ a.pizza.items | map(attribute=1) | unique | join(", ") }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<section>
+  <div class="eyebrow">{{ category_label(ingredient.category) }}</div>
+  <h1>{{ ingredient.name }}</h1>
+  <dl class="facts">
+    <div><dt>Pizzas</dt><dd>{{ appearances | length }} of {{ total }}</dd></div>
+    <div><dt>First seen</dt><dd>{{ appearances[-1].pizza.date | short }}</dd></div>
+    <div><dt>Last seen</dt><dd>{{ appearances[0].pizza.date | short }}</dd></div>
+  </dl>
+  {% if variants | length > 1 %}
+  <p class="muted">Written as: {{ variants | join("; ") }}.</p>
+  {% endif %}
+</section>
+<section>
+  <h2>Every pizza with it</h2>
+  <div class="scroll">
+  <table class="days">
+    <thead><tr><th>Day</th><th>Pizza</th></tr></thead>
+    <tbody>
+    {% for a in appearances %}
+      <tr>
+        <td>{{ day_link(a.pizza.date) }}</td>
+        <td>{{ a.pizza.items | map(attribute=1) | unique | join(", ") }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
 {% endblock %}

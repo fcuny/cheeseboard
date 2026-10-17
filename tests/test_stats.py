@@ -183,7 +183,8 @@ def test_build_real_data(tmp_path):
 
     assert not (out / "stale.html").exists()
     index = (out / "index.html").read_text(encoding="utf-8")
-    assert "Today's pizza" in index
+    assert "Today · Thu Oct 15, 2026" in index
+    assert (out / "style.css").exists()
     assert (out / "days" / "2026-10-15.html").exists()
     assert (out / "ingredients" / "valbreso-feta.html").exists()
     assert (out / "ingredients" / "montalban.html").exists()

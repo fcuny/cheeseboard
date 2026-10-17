@@ -1,0 +1,126 @@
+/* Chalkboard: the menu board behind the counter. Deliberately one dark theme
+   (a board is dark in any light), so there are no light/dark variants.
+   Layout: one wide slate column, chalk headings, dashed rules for lines. */
+:root {
+  --slate: #26302b;
+  --slate-2: #2d3833;
+  --chalk: #eef0e8;
+  --dust: #a8b2aa;
+  --smudge: #46534c;
+  --yellow: #f2d675;
+  --pink: #f2a7a0;
+  --green: #a9dca0;
+  --hand: "Caveat Brush", "Marker Felt", cursive;
+  --body: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--slate); }
+body {
+  margin: 0;
+  min-height: 100%;
+  padding-inline: 16px;
+  padding-block: 28px 56px;
+  background: radial-gradient(120% 80% at 30% 0%, var(--slate-2), var(--slate)) fixed;
+  color: var(--chalk);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.page { max-width: 1040px; margin-inline: auto; display: grid; gap: 40px; }
+a { color: inherit; text-decoration-color: var(--smudge); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--chalk); }
+a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+code { font-size: .92em; color: var(--green); }
+
+/* --- header & footer --------------------------------------------------- */
+header.site { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+.brand { font-family: var(--hand); font-size: 34px; line-height: 1; text-decoration: none; }
+.brand small { font-family: var(--body); font-size: 13px; color: var(--dust); display: block; letter-spacing: .04em; }
+header.site nav { display: flex; gap: 16px; flex-wrap: wrap; }
+header.site nav a { color: var(--dust); text-decoration: none; border-bottom: 1px dashed var(--smudge); }
+header.site nav a:hover { color: var(--chalk); }
+footer { color: var(--dust); font-size: 13px; }
+
+/* --- type -------------------------------------------------------------- */
+h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
+h1, h2 { font-family: var(--hand); font-size: 32px; line-height: 1.05; color: var(--yellow); }
+h3 { font-family: var(--hand); font-size: 24px; color: var(--pink); }
+p { margin: 0; max-width: 65ch; }
+.eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .14em; color: var(--dust); }
+.lead { font-family: var(--hand); font-size: clamp(26px, 4.4vw, 42px); line-height: 1.1; max-width: 26ch; }
+.muted { color: var(--dust); }
+
+/* --- sections ---------------------------------------------------------- */
+main { display: grid; gap: 40px; }
+section { display: grid; gap: 14px; min-width: 0; align-content: start; }
+main > section + section { border-top: 2px solid var(--smudge); padding-top: 32px; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+.scroll { overflow-x: auto; }
+
+/* --- a pizza: its ingredients in context, and its déjà vu ---------------- */
+.pizza-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; }
+@media (max-width: 760px) { .pizza-grid { grid-template-columns: minmax(0, 1fr); } }
+.context { display: grid; align-content: start; }
+.context li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; align-items: baseline;
+  padding: 8px 0; border-bottom: 1px dashed var(--smudge);
+}
+.context .canon { font-weight: 700; }
+.context .note { grid-column: 1 / -1; color: var(--dust); font-size: 14px; }
+.context .is-first .note { color: var(--yellow); }
+.cat { font-size: 12px; color: var(--green); letter-spacing: .06em; text-transform: uppercase; }
+.dejavu { display: grid; gap: 10px; align-content: start; border: 2px dashed var(--smudge); border-radius: 6px; padding: 16px; }
+.dejavu h3 { color: var(--green); }
+.dejavu dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+.dejavu dt { color: var(--dust); font-size: 13px; }
+.dejavu dd { margin: 0; }
+.score { font-family: var(--hand); font-size: 52px; line-height: .9; color: var(--yellow); }
+
+/* --- tables ------------------------------------------------------------ */
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; vertical-align: top; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--dust); font-weight: 400; padding: 6px 12px 6px 0; }
+td { padding: 8px 12px 8px 0; border-top: 1px dashed var(--smudge); }
+.days td:first-child { white-space: nowrap; color: var(--dust); }
+.days .is-closed td { color: var(--dust); }
+.days .is-today td { color: var(--yellow); font-weight: 700; }
+
+/* --- numbers strip ----------------------------------------------------- */
+.facts { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 0; }
+.facts div { display: grid; gap: 2px; }
+.facts dt { color: var(--dust); font-size: 13px; }
+.facts dd { margin: 0; font-family: var(--hand); font-size: 36px; line-height: 1; color: var(--yellow); font-variant-numeric: tabular-nums; }
+
+/* --- leaderboards ------------------------------------------------------ */
+.boards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.board { display: grid; gap: 10px; align-content: start; }
+.board ol { display: grid; gap: 8px; }
+.board li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 4px 12px; align-items: baseline; }
+.board .count { font-family: var(--hand); font-size: 22px; line-height: 1; color: var(--yellow); }
+.board .last { color: var(--dust); font-size: 13px; white-space: nowrap; }
+/* Bar = share of all pizzas, drawn as a chalk stroke over a dotted baseline. */
+.board .bar { grid-column: 1 / -1; height: 8px; border-bottom: 2px dotted var(--smudge); }
+.board .bar span {
+  display: block; height: 100%; width: var(--share); border-radius: 4px; opacity: .7;
+  background: repeating-linear-gradient(100deg, var(--chalk) 0 3px, transparent 3px 5px);
+}
+
+/* --- ingredients by week ----------------------------------------------- */
+.season td { border-top: 0; padding: 4px; min-width: 3.2em; text-align: center; font-family: var(--hand); font-size: 20px; line-height: 1; }
+.season th[scope="col"] { text-align: center; white-space: nowrap; }
+.season th[scope="row"] { font-size: 15px; text-transform: none; letter-spacing: 0; color: var(--chalk); white-space: nowrap; padding-right: 16px; }
+.season td[data-n="0"]::after { content: "–"; color: var(--smudge); }
+.season td[data-n="3"] { color: var(--yellow); }
+.season tr.cat-start th, .season tr.cat-start td { border-top: 1px dashed var(--smudge); padding-top: 10px; }
+
+/* --- rarities, pairs, lists -------------------------------------------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { font-family: var(--hand); font-size: 20px; color: var(--pink); }
+.chips li:not(:last-child)::after { content: " ·"; color: var(--smudge); }
+.chips small { font-family: var(--body); font-size: 12px; color: var(--dust); }
+.pairs { display: grid; gap: 10px; }
+.pairs .score { font-size: 26px; }
+.columns { columns: 16rem; column-gap: 32px; }
+.columns li { break-inside: avoid; padding: 2px 0; }

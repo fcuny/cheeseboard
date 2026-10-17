@@ -3,6 +3,7 @@
 
 Writes plain HTML into an output directory (default: _site/):
 
+    style.css                   copied from static/
     index.html                  today's pizza, this week, leaderboards, ...
     days/index.html             every scraped day
     days/<date>.html            one pizza day, with déjà vu and ingredient context
@@ -32,6 +33,7 @@ from scrape_cheeseboard import load_days, week_start
 
 BERKELEY = ZoneInfo("America/Los_Angeles")
 TEMPLATES = Path(__file__).parent / "templates"
+STATIC = Path(__file__).parent / "static"
 
 
 def berkeley_today() -> dt.date:
@@ -56,6 +58,7 @@ def make_env() -> Environment:
     )
     env.filters["day"] = lambda d: d.strftime("%a %b %-d, %Y")
     env.filters["short"] = lambda d: d.strftime("%b %-d")
+    env.filters["isodate"] = dt.date.fromisoformat
     env.filters["pct"] = lambda x: f"{x:.0%}"
     env.globals["categories"] = stats.CATEGORIES
     return env
@@ -64,12 +67,14 @@ def make_env() -> Environment:
 def build(days: list[dict], taxonomy: stats.Taxonomy, out: Path, today: dt.date) -> None:
     pizzas = stats.to_pizzas(days, taxonomy)
     histories = stats.histories(pizzas)
+    coverage = stats.coverage(days, pizzas)
+    since = coverage.first if coverage else None
     env = make_env()
 
     def write(path: str, template: str, root: str, **context) -> None:
         target = out / path
         target.parent.mkdir(parents=True, exist_ok=True)
-        html = env.get_template(template).render(root=root, today=today, **context)
+        html = env.get_template(template).render(root=root, today=today, since=since, **context)
         target.write_text(html, encoding="utf-8")
 
     def day_page(pizza: stats.Pizza) -> dict:
@@ -81,6 +86,7 @@ def build(days: list[dict], taxonomy: stats.Taxonomy, out: Path, today: dt.date)
 
     if out.exists():
         shutil.rmtree(out)
+    shutil.copytree(STATIC, out)
 
     featured = featured_pizza(pizzas, today)
     cutoff = week_start(today)
@@ -96,8 +102,9 @@ def build(days: list[dict], taxonomy: stats.Taxonomy, out: Path, today: dt.date)
         rarities=stats.rarities(pizzas),
         pairs=stats.most_similar_pairs(pizzas),
         seasonality=stats.seasonality(pizzas),
-        coverage=stats.coverage(days, pizzas),
+        coverage=coverage,
         unmapped=stats.unmapped(pizzas),
+        ingredient_count=len(histories),
     )
 
     write(
