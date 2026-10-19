@@ -204,6 +204,26 @@ def test_featured_pizza(taxonomy, today, expected):
     assert build_site.featured_pizza(pizzas, today).date == expected
 
 
+def test_week_rows_fill_gaps_and_keep_later_days():
+    # Mon 2026-10-12 closed, Tue/Wed posted, nothing for Thu-Sun, next Monday already posted.
+    days = [closed("2026-10-12"), day("2026-10-13", "Corn"), day("2026-10-14", "Feta"), closed("2026-10-19")]
+    rows = build_site.week_rows(days, dt.date(2026, 10, 15))
+    assert [r["date"] for r in rows] == [f"2026-10-{n}" for n in range(12, 20)]
+    assert [r["date"] for r in rows if r.get("missing")] == [f"2026-10-{n}" for n in range(15, 19)]
+    assert rows[3]["weekday"] == "Thu"
+
+
+def test_week_rows_past_the_scraped_data():
+    rows = build_site.week_rows([day("2026-10-13", "Corn")], dt.date(2026, 10, 22))
+    assert [r["date"] for r in rows] == [f"2026-10-{n}" for n in range(19, 26)]
+    assert all(r.get("missing") for r in rows)
+
+
+def test_today_status():
+    days = [closed("2026-10-12"), day("2026-10-13", "Corn")]
+    assert [build_site.today_status(days, dt.date(2026, 10, n)) for n in (12, 13, 14)] == ["closed", "open", "missing"]
+
+
 def test_build_real_data(tmp_path):
     out = tmp_path / "site"
     (out / "stale.html").parent.mkdir()

@@ -85,6 +85,7 @@ th { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: va
 td { padding: 8px 12px 8px 0; border-top: 1px dashed var(--smudge); }
 .days td:first-child { white-space: nowrap; color: var(--dust); }
 .days .is-closed td { color: var(--dust); }
+.days .is-missing td { color: var(--dust); font-style: italic; }
 .days .is-today td { color: var(--yellow); font-weight: 700; }
 
 /* --- numbers strip ----------------------------------------------------- */
