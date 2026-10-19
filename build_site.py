@@ -11,6 +11,9 @@ Writes plain HTML into an output directory (default: _site/):
     ingredients/<slug>.html     one ingredient's full history
 
 "Today" is Berkeley time, since that's when the pizzeria's day turns over.
+The home page is rendered for the build date, and static/today.js redoes its
+date-dependent parts (featured pizza, this week) in the visitor's browser, so
+the page stays right between builds.
 
 Usage:
     python build_site.py                        # build into ./_site/
@@ -32,6 +35,8 @@ import stats
 from scrape_cheeseboard import load_days, week_start
 
 BERKELEY = ZoneInfo("America/Los_Angeles")
+CHEESE_BOARD_URL = "https://cheeseboardcollective.coop/pizza/"
+SCHEDULE_URL = "https://cheeseboardcollective.coop/pizza/pizza-schedule/"
 TEMPLATES = Path(__file__).parent / "templates"
 STATIC = Path(__file__).parent / "static"
 
@@ -48,6 +53,31 @@ def featured_pizza(pizzas: list[stats.Pizza], today: dt.date) -> stats.Pizza | N
     return pizzas[-1] if pizzas else None
 
 
+def week_rows(days: list[dict], today: dt.date) -> list[dict]:
+    """The days of `today`'s week, Monday through Sunday, then any later days posted.
+
+    A date with no scraped record gets a {"missing": True} placeholder, so a
+    gap shows up as "not posted yet" instead of silently vanishing. Mirrored
+    by weekRows() in static/today.js.
+    """
+    by_date = {dt.date.fromisoformat(d["date"]): d for d in days}
+    start = week_start(today)
+    end = max([start + dt.timedelta(days=6), *(d for d in by_date if d > start)])
+    rows = []
+    for offset in range((end - start).days + 1):
+        date = start + dt.timedelta(days=offset)
+        rows.append(by_date.get(date) or {"date": date.isoformat(), "weekday": date.strftime("%a"), "missing": True})
+    return rows
+
+
+def today_status(days: list[dict], today: dt.date) -> str:
+    """'open', 'closed' or 'missing' (nothing scraped for today)."""
+    for d in days:
+        if d["date"] == today.isoformat():
+            return "closed" if d.get("closed", False) else "open"
+    return "missing"
+
+
 def make_env() -> Environment:
     env = Environment(
         loader=FileSystemLoader(TEMPLATES),
@@ -61,6 +91,8 @@ def make_env() -> Environment:
     env.filters["isodate"] = dt.date.fromisoformat
     env.filters["pct"] = lambda x: f"{x:.0%}"
     env.globals["categories"] = stats.CATEGORIES
+    env.globals["cheese_board_url"] = CHEESE_BOARD_URL
+    env.globals["schedule_url"] = SCHEDULE_URL
     return env
 
 
@@ -90,13 +122,24 @@ def build(days: list[dict], taxonomy: stats.Taxonomy, out: Path, today: dt.date)
 
     featured = featured_pizza(pizzas, today)
     cutoff = week_start(today)
+    # Any later visitor's today is >= the build date, so their featured pizza
+    # is one posted from today on, or else the latest one; render each of
+    # those (hidden) for today.js to pick from.
+    candidates = [p for p in pizzas if p.date >= today] or pizzas[-1:]
     write(
         "index.html",
         "index.html",
         root="",
-        featured=day_page(featured) if featured else None,
-        open_today=featured is not None and featured.date == today,
-        week=sorted((d for d in days if dt.date.fromisoformat(d["date"]) >= cutoff), key=lambda d: d["date"]),
+        featured=featured,
+        candidates=[day_page(p) for p in candidates],
+        status=today_status(days, today),
+        latest=max((dt.date.fromisoformat(d["date"]) for d in days), default=None),
+        week=week_rows(days, today),
+        schedule=[
+            {k: d[k] for k in ("date", "weekday", "closed", "ingredients") if k in d}
+            for d in sorted(days, key=lambda d: d["date"])
+            if dt.date.fromisoformat(d["date"]) >= cutoff
+        ],
         leaderboards=stats.leaderboards(pizzas, stats.FEATURED, per_category=5),
         base=stats.base_counts(pizzas),
         rarities=stats.rarities(pizzas),

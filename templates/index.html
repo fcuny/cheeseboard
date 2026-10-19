@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% from "macros.html" import ingredient_link, ingredient_list, day_link, pizza_details, days_table with context %}
 {% block content %}
-<section id="today">
+{# today.js redoes this section and "This week" for the visitor's date; what's rendered here is for the build date. #}
+<section id="today" data-today="{{ today.isoformat() }}">
 {% if featured %}
   <div class="eyebrow">
-    {% if open_today %}Today · {{ featured.pizza.date | day }}
-    {% elif featured.pizza.date > today %}No pizza today · next up {{ day_link(featured.pizza.date) }}
-    {% else %}No pizza today · latest was {{ day_link(featured.pizza.date) }}
+    {% if featured.date == today %}Today · {{ featured.date | day }}
+    {% else %}{{ "No pizza today" if status == "closed" else "Nothing posted for today yet" }} · {{ "next up" if featured.date > today else "latest was" }} {{ day_link(featured.date) }}
     {% endif %}
   </div>
-  {{ pizza_details(featured.pizza, featured.context, featured.match) }}
+  {% for c in candidates %}
+  <div class="featured" data-date="{{ c.pizza.date.isoformat() }}"{% if c.pizza.date != featured.date %} hidden{% endif %}>
+    {{ pizza_details(c.pizza, c.context, c.match) }}
+  </div>
+  {% endfor %}
 {% else %}
   <h2>No pizzas yet</h2>
 {% endif %}
@@ -17,11 +21,11 @@
 
 <section id="week">
   <h2>This week</h2>
-  {% if week %}
+  <p class="muted stale"{% if not latest or latest >= today %} hidden{% endif %}>
+    Nothing scraped past <span class="latest">{{ latest | day if latest else "" }}</span> yet; the <a href="{{ schedule_url }}">Cheese Board's schedule</a> may have more.
+  </p>
   {{ days_table(week) }}
-  {% else %}
-  <p class="muted">Nothing posted for this week yet.</p>
-  {% endif %}
+  <script type="application/json" id="schedule-data">{{ schedule | tojson }}</script>
 </section>
 
 {% if coverage %}
@@ -123,4 +127,5 @@
   </ul>
 </section>
 {% endif %}
+<script src="{{ root }}today.js"></script>
 {% endblock %}

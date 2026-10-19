@@ -48,7 +48,7 @@
 </div>
 {% endmacro %}
 
-{# Scraped day records (open or closed) in the order given; with_year for lists spanning months. #}
+{# Day records (open, closed, or missing placeholders) in the order given; with_year for lists spanning months. #}
 {% macro days_table(days, with_year=False) %}
 <div class="scroll">
 <table class="days">
@@ -56,9 +56,9 @@
   <tbody>
   {% for d in days %}
     {% set is_closed = d.get("closed", False) %}
-    <tr class="{{ 'is-closed' if is_closed }}{{ ' is-today' if d.date == today.isoformat() }}">
+    <tr class="{{ 'is-closed' if is_closed }}{{ 'is-missing' if d.get("missing") }}{{ ' is-today' if d.date == today.isoformat() }}">
       <td>{{ d.date | isodate | day if with_year else d.weekday ~ " " ~ (d.date | isodate | short) }}</td>
-      <td>{% if is_closed %}Closed{% else %}<a href="{{ root }}days/{{ d.date }}.html">{{ d.ingredients | join(", ") }}</a>{% endif %}</td>
+      <td>{% if is_closed %}Closed{% elif d.get("missing") %}Not posted yet{% else %}<a href="{{ root }}days/{{ d.date }}.html">{{ d.ingredients | join(", ") }}</a>{% endif %}</td>
     </tr>
   {% endfor %}
   </tbody>
