@@ -19,14 +19,12 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-10-12 | Mon | _Closed_ |
-| 2026-10-13 | Tue | Organic heirloom tomato, red onion, aged Asiago cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-14 | Wed | Cauliflower, caramelized onion, pistachio, mozzarella, Montalbán cheese, garlic olive oil, parsley |
-| 2026-10-15 | Thu | Organic Warren pear, Danish blue cheese, mozzarella, arugula, lemon dressing |
-| 2026-10-16 | Fri | Local corn, red onion, Valbreso feta cheese, mozzarella, house made avocado sauce, cilantro |
-| 2026-10-17 | Sat | House made Romesco sauce, organic zucchini, red onion, mozzarella |
-| 2026-10-18 | Sun | _Closed_ |
 | 2026-10-19 | Mon | _Closed_ |
+| 2026-10-20 | Tue | Cremini mushroom, red onion, Fontina and Voralberger Bergkäse cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-10-21 | Wed | The Cheese Board Margherita: Organic heirloom tomato, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
+| 2026-10-22 | Thu | Broccolini, red onion, cheddar cheese, mozzarella, garlic olive oil, organic lemon zest, parsley |
+| 2026-10-23 | Fri | Organic baby chard and kale, leek, mozzarella, Montalbán cheese, garlic olive oil, organic orange and lemon zest, parsley |
+| 2026-10-24 | Sat | Organic heirloom tomato, local corn, mozzarella, garlic olive oil, basil-Parmesan |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files

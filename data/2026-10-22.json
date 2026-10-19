@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-22",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Broccolini, red onion, cheddar cheese, mozzarella, garlic olive oil, organic lemon zest, parsley",
+  "ingredients": [
+    "Broccolini",
+    "red onion",
+    "cheddar cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon zest",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "broccolini",
+    "red onion",
+    "cheddar cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon zest",
+    "parsley"
+  ]
+}
