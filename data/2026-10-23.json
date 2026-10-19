@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-23",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Organic baby chard and kale, leek, mozzarella, Montalbán cheese, garlic olive oil, organic orange and lemon zest, parsley",
+  "ingredients": [
+    "Organic baby chard and kale",
+    "leek",
+    "mozzarella",
+    "Montalbán cheese",
+    "garlic olive oil",
+    "organic orange and lemon zest",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic baby chard and kale",
+    "leek",
+    "mozzarella",
+    "montalbán cheese",
+    "garlic olive oil",
+    "organic orange and lemon zest",
+    "parsley"
+  ]
+}

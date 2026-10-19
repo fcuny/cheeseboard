@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-20",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Cremini mushroom, red onion, Fontina and Voralberger Bergkäse cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Cremini mushroom",
+    "red onion",
+    "Fontina and Voralberger Bergkäse cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cremini mushroom",
+    "red onion",
+    "fontina and voralberger bergkäse cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}
