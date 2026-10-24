@@ -25,6 +25,8 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-10-22 | Thu | Broccolini, red onion, cheddar cheese, mozzarella, garlic olive oil, organic lemon zest, parsley |
 | 2026-10-23 | Fri | Organic baby chard and kale, leek, mozzarella, Montalbán cheese, garlic olive oil, organic orange and lemon zest, parsley |
 | 2026-10-24 | Sat | Organic heirloom tomato, local corn, mozzarella, garlic olive oil, basil-Parmesan |
+| 2026-10-25 | Sun | _Closed_ |
+| 2026-10-26 | Mon | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
