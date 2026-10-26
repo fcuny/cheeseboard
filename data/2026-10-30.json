@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-30",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Sweet bell pepper, organic baby spinach, Valbreso feta cheese, mozzarella, house made olive tapenade",
+  "ingredients": [
+    "Sweet bell pepper",
+    "organic baby spinach",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "house made olive tapenade"
+  ],
+  "ingredients_normalized": [
+    "sweet bell pepper",
+    "organic baby spinach",
+    "valbreso feta cheese",
+    "mozzarella",
+    "house made olive tapenade"
+  ]
+}

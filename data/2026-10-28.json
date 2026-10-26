@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-28",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "House made tomato sauce, mozzarella, Grana Padano cheese, arugula, lemon dressing",
+  "ingredients": [
+    "House made tomato sauce",
+    "mozzarella",
+    "Grana Padano cheese",
+    "arugula",
+    "lemon dressing"
+  ],
+  "ingredients_normalized": [
+    "house made tomato sauce",
+    "mozzarella",
+    "grana padano cheese",
+    "arugula",
+    "lemon dressing"
+  ]
+}
