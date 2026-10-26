@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-31",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "Roasted Yukon Gold potato and yam, onion, Gruyère cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Roasted Yukon Gold potato and yam",
+    "onion",
+    "Gruyère cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "roasted yukon gold potato and yam",
+    "onion",
+    "gruyère cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

@@ -19,14 +19,12 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-10-19 | Mon | _Closed_ |
-| 2026-10-20 | Tue | Cremini mushroom, red onion, Fontina and Voralberger Bergkäse cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-21 | Wed | Organic heirloom tomato, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
-| 2026-10-22 | Thu | Broccolini, red onion, cheddar cheese, mozzarella, garlic olive oil, organic lemon zest, parsley |
-| 2026-10-23 | Fri | Organic baby chard and kale, leek, mozzarella, Montalbán cheese, garlic olive oil, organic orange and lemon zest, parsley |
-| 2026-10-24 | Sat | Organic heirloom tomato, local corn, mozzarella, garlic olive oil, basil-Parmesan |
-| 2026-10-25 | Sun | _Closed_ |
 | 2026-10-26 | Mon | _Closed_ |
+| 2026-10-27 | Tue | Organic tomato, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
+| 2026-10-28 | Wed | House made tomato sauce, mozzarella, Grana Padano cheese, arugula, lemon dressing |
+| 2026-10-29 | Thu | Cremini mushroom, organic baby kale, toasted pine nut, mozzarella, Montalbán cheese, garlic olive oil, parsley |
+| 2026-10-30 | Fri | Sweet bell pepper, organic baby spinach, Valbreso feta cheese, mozzarella, house made olive tapenade |
+| 2026-10-31 | Sat | Roasted Yukon Gold potato and yam, onion, Gruyère cheese, mozzarella, garlic olive oil, oregano, parsley |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
