@@ -4,14 +4,14 @@
   "closed": false,
   "ingredients_raw": "The Cheese Board Margherita: Organic heirloom tomato (Golden Rule Organics), fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil",
   "ingredients": [
-    "The Cheese Board Margherita: Organic heirloom tomato",
+    "Organic heirloom tomato",
     "fresh mozzarella made in Berkeley by Belfiore",
     "mozzarella",
     "garlic olive oil",
     "basil"
   ],
   "ingredients_normalized": [
-    "the cheese board margherita: organic heirloom tomato",
+    "organic heirloom tomato",
     "fresh mozzarella made in berkeley by belfiore",
     "mozzarella",
     "garlic olive oil",

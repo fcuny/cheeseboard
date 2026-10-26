@@ -35,6 +35,8 @@ DATE_RE = re.compile(
 )
 PAREN_RE = re.compile(r"\([^)]*\)")
 WHITESPACE_RE = re.compile(r"\s+")
+# A named pizza leads with its name: "The Cheese Board Margherita: Organic tomato, ..."
+PIZZA_NAME_RE = re.compile(r"^[^,:]*:\s*")
 CLOSED_RE = re.compile(r"closed", re.IGNORECASE)
 
 
@@ -76,11 +78,11 @@ def normalize_ingredient(raw: str) -> str:
 def parse_ingredients(text: str) -> tuple[list[str], list[str]]:
     """Split an ingredient paragraph into raw and normalized lists.
 
-    Parenthetical asides (farm attributions, vegan/cashew footnotes) are
-    stripped before splitting on commas — they're sourcing notes, not
-    ingredients.
+    Parenthetical asides (farm attributions, vegan/cashew footnotes) and a
+    leading pizza name ("The Cheese Board Margherita:") are stripped before
+    splitting on commas — they're not ingredients.
     """
-    cleaned = PAREN_RE.sub("", text)
+    cleaned = PIZZA_NAME_RE.sub("", PAREN_RE.sub("", text))
     raw_parts = [part.strip(" .") for part in cleaned.split(",") if part.strip(" .")]
     normalized = [normalize_ingredient(part) for part in raw_parts]
     return raw_parts, normalized

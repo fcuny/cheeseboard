@@ -130,6 +130,13 @@ def test_parse_ingredients_strips_parentheticals_only():
     assert normalized == ["organic corn", "red onion", "mozzarella"]
 
 
+def test_parse_ingredients_drops_pizza_name():
+    raw = "The Cheese Board Margherita: Organic heirloom tomato (Golden Rule Organics), mozzarella, basil"
+    ingredients, normalized = sc.parse_ingredients(raw)
+    assert ingredients == ["Organic heirloom tomato", "mozzarella", "basil"]
+    assert normalized == ["organic heirloom tomato", "mozzarella", "basil"]
+
+
 def test_render_schedule_table_skips_earlier_weeks_and_marks_closed():
     days = [
         {"date": "2026-09-13", "weekday": "Sun", "closed": True},

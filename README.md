@@ -21,7 +21,7 @@ day at a time — the full history lives in `data/` regardless.
 | --- | --- | --- |
 | 2026-10-19 | Mon | _Closed_ |
 | 2026-10-20 | Tue | Cremini mushroom, red onion, Fontina and Voralberger Bergkäse cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-21 | Wed | The Cheese Board Margherita: Organic heirloom tomato, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
+| 2026-10-21 | Wed | Organic heirloom tomato, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
 | 2026-10-22 | Thu | Broccolini, red onion, cheddar cheese, mozzarella, garlic olive oil, organic lemon zest, parsley |
 | 2026-10-23 | Fri | Organic baby chard and kale, leek, mozzarella, Montalbán cheese, garlic olive oil, organic orange and lemon zest, parsley |
 | 2026-10-24 | Sat | Organic heirloom tomato, local corn, mozzarella, garlic olive oil, basil-Parmesan |

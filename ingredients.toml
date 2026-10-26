@@ -21,6 +21,9 @@
 "organic corn and baby spinach" = ["organic corn", "organic baby spinach"]
 "roasted leek and onion" = ["roasted leek", "roasted onion"]
 "organic lemon and orange zest" = ["organic lemon zest", "organic orange zest"]
+"organic orange and lemon zest" = ["organic orange", "lemon zest"]
+"fontina and voralberger bergkäse cheese" = ["fontina", "voralberger bergkäse"]
+"organic baby chard and kale" = ["organic baby chard", "kale"]
 
 # --- base -----------------------------------------------------------------
 
@@ -56,7 +59,15 @@ aliases = ["aged provolone cheese"]
 
 [ingredients."Vorarlberger Bergkäse"]
 category = "cheese"
-aliases = ["voralberger berkase alpine cheese"]
+aliases = ["voralberger berkase alpine cheese", "voralberger bergkäse"]
+
+[ingredients."Fontina"]
+category = "cheese"
+aliases = ["fontina"]
+
+[ingredients."Cheddar"]
+category = "cheese"
+aliases = ["cheddar cheese"]
 
 [ingredients."Raclette"]
 category = "cheese"
@@ -80,7 +91,7 @@ aliases = ["fresh ricotta made in berkeley by belfiore"]
 
 [ingredients."Basil Parmesan"]
 category = "cheese"
-aliases = ["basil parmesan"]
+aliases = ["basil parmesan", "basil-parmesan"]
 
 [ingredients."Toasted garlic Parmesan"]
 category = "cheese"
@@ -122,6 +133,14 @@ aliases = ["organic warren pear"]
 category = "produce"
 aliases = ["organic baby spinach"]
 
+[ingredients."Baby chard"]
+category = "produce"
+aliases = ["organic baby chard"]
+
+[ingredients."Kale"]
+category = "produce"
+aliases = ["kale"]
+
 [ingredients."Arugula"]
 category = "produce"
 aliases = ["arugula"]
@@ -129,6 +148,10 @@ aliases = ["arugula"]
 [ingredients."Artichoke"]
 category = "produce"
 aliases = ["artichoke"]
+
+[ingredients."Broccolini"]
+category = "produce"
+aliases = ["broccolini"]
 
 [ingredients."Cauliflower"]
 category = "produce"
@@ -214,11 +237,15 @@ aliases = ["basil"]
 
 [ingredients."Lemon zest"]
 category = "citrus"
-aliases = ["organic lemon zest"]
+aliases = ["organic lemon zest", "lemon zest"]
 
 [ingredients."Orange zest"]
 category = "citrus"
 aliases = ["organic orange zest"]
+
+[ingredients."Orange"]
+category = "citrus"
+aliases = ["organic orange"]
 
 [ingredients."Lemon juice"]
 category = "citrus"
