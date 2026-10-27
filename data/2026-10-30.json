@@ -2,19 +2,23 @@
   "date": "2026-10-30",
   "weekday": "Fri",
   "closed": false,
-  "ingredients_raw": "Sweet bell pepper, organic baby spinach, Valbreso feta cheese, mozzarella, house made olive tapenade",
+  "ingredients_raw": "Sweet bell pepper, yellow onion, Kalamata olive, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, parsley",
   "ingredients": [
     "Sweet bell pepper",
-    "organic baby spinach",
-    "Valbreso feta cheese",
+    "yellow onion",
+    "Kalamata olive",
+    "Capricho de Cabra goat cheese",
     "mozzarella",
-    "house made olive tapenade"
+    "garlic olive oil",
+    "parsley"
   ],
   "ingredients_normalized": [
     "sweet bell pepper",
-    "organic baby spinach",
-    "valbreso feta cheese",
+    "yellow onion",
+    "kalamata olive",
+    "capricho de cabra goat cheese",
     "mozzarella",
-    "house made olive tapenade"
+    "garlic olive oil",
+    "parsley"
   ]
 }
