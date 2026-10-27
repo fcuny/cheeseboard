@@ -21,9 +21,10 @@
 "organic corn and baby spinach" = ["organic corn", "organic baby spinach"]
 "roasted leek and onion" = ["roasted leek", "roasted onion"]
 "organic lemon and orange zest" = ["organic lemon zest", "organic orange zest"]
-"organic orange and lemon zest" = ["organic orange", "lemon zest"]
+"organic orange and lemon zest" = ["organic orange zest", "organic lemon zest"]
 "fontina and voralberger bergkäse cheese" = ["fontina", "voralberger bergkäse"]
 "organic baby chard and kale" = ["organic baby chard", "kale"]
+"roasted yukon gold potato and yam" = ["roasted yukon gold potato", "roasted yam"]
 
 # --- base -----------------------------------------------------------------
 
@@ -97,6 +98,14 @@ aliases = ["basil parmesan", "basil-parmesan"]
 category = "cheese"
 aliases = ["toasted garlic parmesan"]
 
+[ingredients."Grana Padano"]
+category = "cheese"
+aliases = ["grana padano cheese"]
+
+[ingredients."Gruyère"]
+category = "cheese"
+aliases = ["gruyère cheese"]
+
 # --- produce --------------------------------------------------------------
 
 [ingredients."Tomato"]
@@ -139,7 +148,7 @@ aliases = ["organic baby chard"]
 
 [ingredients."Kale"]
 category = "produce"
-aliases = ["kale"]
+aliases = ["kale", "organic baby kale"]
 
 [ingredients."Arugula"]
 category = "produce"
@@ -152,6 +161,14 @@ aliases = ["artichoke"]
 [ingredients."Broccolini"]
 category = "produce"
 aliases = ["broccolini"]
+
+[ingredients."Potato"]
+category = "produce"
+aliases = ["roasted yukon gold potato"]
+
+[ingredients."Yam"]
+category = "produce"
+aliases = ["roasted yam"]
 
 [ingredients."Cauliflower"]
 category = "produce"
@@ -177,7 +194,7 @@ aliases = ["caramelized onion"]
 
 [ingredients."Onion"]
 category = "allium"
-aliases = ["roasted onion"]
+aliases = ["onion", "roasted onion"]
 
 [ingredients."Leek"]
 category = "allium"
@@ -205,6 +222,14 @@ aliases = ["house made avocado sauce"]
 category = "sauce"
 aliases = ["lemon dressing"]
 
+[ingredients."Tomato sauce"]
+category = "sauce"
+aliases = ["house made tomato sauce"]
+
+[ingredients."Olive tapenade"]
+category = "sauce"
+aliases = ["house made olive tapenade"]
+
 # --- nut ------------------------------------------------------------------
 
 [ingredients."Walnut"]
@@ -214,6 +239,10 @@ aliases = ["walnut"]
 [ingredients."Pistachio"]
 category = "nut"
 aliases = ["pistachio"]
+
+[ingredients."Pine nut"]
+category = "nut"
+aliases = ["toasted pine nut"]
 
 # --- herb -----------------------------------------------------------------
 
@@ -237,15 +266,11 @@ aliases = ["basil"]
 
 [ingredients."Lemon zest"]
 category = "citrus"
-aliases = ["organic lemon zest", "lemon zest"]
+aliases = ["organic lemon zest"]
 
 [ingredients."Orange zest"]
 category = "citrus"
 aliases = ["organic orange zest"]
-
-[ingredients."Orange"]
-category = "citrus"
-aliases = ["organic orange"]
 
 [ingredients."Lemon juice"]
 category = "citrus"
