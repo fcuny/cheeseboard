@@ -20,11 +20,12 @@ day at a time — the full history lives in `data/` regardless.
 | Date | Day | Pizza |
 | --- | --- | --- |
 | 2026-10-26 | Mon | _Closed_ |
-| 2026-10-27 | Tue | Organic tomato, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
+| 2026-10-27 | Tue | Organic tomato, red onion, cheddar cheese, mozzarella, garlic olive oil, oregano, parsley |
 | 2026-10-28 | Wed | House made tomato sauce, mozzarella, Grana Padano cheese, arugula, lemon dressing |
 | 2026-10-29 | Thu | Cremini mushroom, organic baby kale, toasted pine nut, mozzarella, Montalbán cheese, garlic olive oil, parsley |
-| 2026-10-30 | Fri | Sweet bell pepper, organic baby spinach, Valbreso feta cheese, mozzarella, house made olive tapenade |
+| 2026-10-30 | Fri | Sweet bell pepper, yellow onion, Kalamata olive, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, parsley |
 | 2026-10-31 | Sat | Roasted Yukon Gold potato and yam, onion, Gruyère cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-11-01 | Sun | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
