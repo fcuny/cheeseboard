@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-04",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "Organic Heirloom tomato (Golden Rule Organics), red onion, Valbreso feta cheese, mozzarella, organic lemon zest and juice, garlic olive oil, cilantro",
+  "ingredients": [
+    "Organic Heirloom tomato",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "organic lemon zest and juice",
+    "garlic olive oil",
+    "cilantro"
+  ],
+  "ingredients_normalized": [
+    "organic heirloom tomato",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "organic lemon zest and juice",
+    "garlic olive oil",
+    "cilantro"
+  ]
+}

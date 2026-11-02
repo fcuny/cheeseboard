@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-05",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Marinated artichoke, mozzarella, Caciocavallo cheese, arugula, lemon dressing",
+  "ingredients": [
+    "Marinated artichoke",
+    "mozzarella",
+    "Caciocavallo cheese",
+    "arugula",
+    "lemon dressing"
+  ],
+  "ingredients_normalized": [
+    "marinated artichoke",
+    "mozzarella",
+    "caciocavallo cheese",
+    "arugula",
+    "lemon dressing"
+  ]
+}
