@@ -19,13 +19,12 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-10-26 | Mon | _Closed_ |
-| 2026-10-27 | Tue | Organic tomato, red onion, cheddar cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-10-28 | Wed | House made tomato sauce, mozzarella, Grana Padano cheese, arugula, lemon dressing |
-| 2026-10-29 | Thu | Cremini mushroom, organic baby kale, toasted pine nut, mozzarella, Montalbán cheese, garlic olive oil, parsley |
-| 2026-10-30 | Fri | Sweet bell pepper, yellow onion, Kalamata olive, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, parsley |
-| 2026-10-31 | Sat | Roasted Yukon Gold potato and yam, onion, Gruyère cheese, mozzarella, garlic olive oil, oregano, parsley |
-| 2026-11-01 | Sun | _Closed_ |
+| 2026-11-02 | Mon | _Closed_ |
+| 2026-11-03 | Tue | Organic baby spinach, red onion, Valbreso feta cheese, mozzarella, house made tomato sauce, parsley |
+| 2026-11-04 | Wed | Organic Heirloom tomato, red onion, Valbreso feta cheese, mozzarella, organic lemon zest and juice, garlic olive oil, cilantro |
+| 2026-11-05 | Thu | Marinated artichoke, mozzarella, Caciocavallo cheese, arugula, lemon dressing |
+| 2026-11-06 | Fri | Our 4-cheese, 3-onion pie: Mozzarella, Fontina, fresh ricotta made in Berkeley by Belfiore and Parmesan with red, yellow, and green onion, and house made basil- pine nut pesto |
+| 2026-11-07 | Sat | Cremini mushroom, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files

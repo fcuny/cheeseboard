@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-03",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Organic baby spinach, red onion, Valbreso feta cheese, mozzarella, house made tomato sauce, parsley",
+  "ingredients": [
+    "Organic baby spinach",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "house made tomato sauce",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic baby spinach",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "house made tomato sauce",
+    "parsley"
+  ]
+}
