@@ -25,6 +25,11 @@
 "fontina and voralberger bergkäse cheese" = ["fontina", "voralberger bergkäse"]
 "organic baby chard and kale" = ["organic baby chard", "kale"]
 "roasted yukon gold potato and yam" = ["roasted yukon gold potato", "roasted yam"]
+"organic lemon zest and juice" = ["organic lemon zest", "lemon juice"]
+# 2026-11-06 was written as prose ("... Belfiore and Parmesan with red,
+# yellow, and green onion"), which the comma split can't take apart.
+"fresh ricotta made in berkeley by belfiore and parmesan with red" = ["fresh ricotta made in berkeley by belfiore", "parmesan", "red onion"]
+"yellow" = ["yellow onion"]
 
 # --- base -----------------------------------------------------------------
 
@@ -98,6 +103,14 @@ aliases = ["basil parmesan", "basil-parmesan"]
 category = "cheese"
 aliases = ["toasted garlic parmesan"]
 
+[ingredients."Parmesan"]
+category = "cheese"
+aliases = ["parmesan"]
+
+[ingredients."Caciocavallo"]
+category = "cheese"
+aliases = ["caciocavallo cheese"]
+
 [ingredients."Grana Padano"]
 category = "cheese"
 aliases = ["grana padano cheese"]
@@ -156,7 +169,7 @@ aliases = ["arugula"]
 
 [ingredients."Artichoke"]
 category = "produce"
-aliases = ["artichoke"]
+aliases = ["artichoke", "marinated artichoke"]
 
 [ingredients."Broccolini"]
 category = "produce"
@@ -187,6 +200,10 @@ aliases = ["red onion"]
 [ingredients."Yellow onion"]
 category = "allium"
 aliases = ["yellow onion"]
+
+[ingredients."Green onion"]
+category = "allium"
+aliases = ["green onion"]
 
 [ingredients."Caramelized onion"]
 category = "allium"
@@ -229,6 +246,10 @@ aliases = ["house made tomato sauce"]
 [ingredients."Olive tapenade"]
 category = "sauce"
 aliases = ["house made olive tapenade"]
+
+[ingredients."Basil pine nut pesto"]
+category = "sauce"
+aliases = ["house made basil- pine nut pesto"]
 
 # --- nut ------------------------------------------------------------------
 

@@ -137,6 +137,25 @@ def test_parse_ingredients_drops_pizza_name():
     assert normalized == ["organic heirloom tomato", "mozzarella", "basil"]
 
 
+def test_parse_ingredients_drops_pizza_name_containing_a_comma():
+    raw = "Our 4-cheese, 3-onion pie: Mozzarella, Fontina"
+    ingredients, normalized = sc.parse_ingredients(raw)
+    assert ingredients == ["Mozzarella", "Fontina"]
+    assert normalized == ["mozzarella", "fontina"]
+
+
+def test_parse_ingredients_drops_leading_and_of_last_item():
+    raw = "Red onion, yellow onion, and house made pesto"
+    ingredients, normalized = sc.parse_ingredients(raw)
+    assert ingredients == ["Red onion", "yellow onion", "house made pesto"]
+    assert normalized == ["red onion", "yellow onion", "house made pesto"]
+
+
+def test_parse_ingredients_keeps_words_that_start_with_and():
+    ingredients, _ = sc.parse_ingredients("Andouille sausage, mozzarella")
+    assert ingredients == ["Andouille sausage", "mozzarella"]
+
+
 def test_render_schedule_table_skips_earlier_weeks_and_marks_closed():
     days = [
         {"date": "2026-09-13", "weekday": "Sun", "closed": True},
