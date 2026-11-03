@@ -35,8 +35,11 @@ DATE_RE = re.compile(
 )
 PAREN_RE = re.compile(r"\([^)]*\)")
 WHITESPACE_RE = re.compile(r"\s+")
-# A named pizza leads with its name: "The Cheese Board Margherita: Organic tomato, ..."
-PIZZA_NAME_RE = re.compile(r"^[^,:]*:\s*")
+# A named pizza leads with its name, which can itself hold a comma:
+# "The Cheese Board Margherita: Organic tomato, ..." or "Our 4-cheese, 3-onion pie: Mozzarella, ..."
+PIZZA_NAME_RE = re.compile(r"^[^:]*:\s*")
+# The last item of an Oxford-comma list: "red, yellow, and green onion"
+LEADING_AND_RE = re.compile(r"^and\s+", re.IGNORECASE)
 CLOSED_RE = re.compile(r"closed", re.IGNORECASE)
 
 
@@ -80,10 +83,12 @@ def parse_ingredients(text: str) -> tuple[list[str], list[str]]:
 
     Parenthetical asides (farm attributions, vegan/cashew footnotes) and a
     leading pizza name ("The Cheese Board Margherita:") are stripped before
-    splitting on commas — they're not ingredients.
+    splitting on commas — they're not ingredients. So is the "and" that
+    leads the last item of an Oxford-comma list.
     """
     cleaned = PIZZA_NAME_RE.sub("", PAREN_RE.sub("", text))
-    raw_parts = [part.strip(" .") for part in cleaned.split(",") if part.strip(" .")]
+    parts = (LEADING_AND_RE.sub("", part.strip(" .")) for part in cleaned.split(","))
+    raw_parts = [part for part in parts if part]
     normalized = [normalize_ingredient(part) for part in raw_parts]
     return raw_parts, normalized
 

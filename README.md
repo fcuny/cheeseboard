@@ -23,7 +23,7 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-11-03 | Tue | Organic baby spinach, red onion, Valbreso feta cheese, mozzarella, house made tomato sauce, parsley |
 | 2026-11-04 | Wed | Organic Heirloom tomato, red onion, Valbreso feta cheese, mozzarella, organic lemon zest and juice, garlic olive oil, cilantro |
 | 2026-11-05 | Thu | Marinated artichoke, mozzarella, Caciocavallo cheese, arugula, lemon dressing |
-| 2026-11-06 | Fri | Our 4-cheese, 3-onion pie: Mozzarella, Fontina, fresh ricotta made in Berkeley by Belfiore and Parmesan with red, yellow, and green onion, and house made basil- pine nut pesto |
+| 2026-11-06 | Fri | Mozzarella, Fontina, fresh ricotta made in Berkeley by Belfiore and Parmesan with red, yellow, green onion, house made basil- pine nut pesto |
 | 2026-11-07 | Sat | Cremini mushroom, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
 <!-- PIZZA-SCHEDULE:END -->
 

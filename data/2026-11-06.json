@@ -4,21 +4,19 @@
   "closed": false,
   "ingredients_raw": "Our 4-cheese, 3-onion pie: Mozzarella, Fontina, fresh ricotta made in Berkeley by Belfiore and Parmesan with red, yellow, and green onion, and house made basil- pine nut pesto",
   "ingredients": [
-    "Our 4-cheese",
-    "3-onion pie: Mozzarella",
+    "Mozzarella",
     "Fontina",
     "fresh ricotta made in Berkeley by Belfiore and Parmesan with red",
     "yellow",
-    "and green onion",
-    "and house made basil- pine nut pesto"
+    "green onion",
+    "house made basil- pine nut pesto"
   ],
   "ingredients_normalized": [
-    "our 4-cheese",
-    "3-onion pie: mozzarella",
+    "mozzarella",
     "fontina",
     "fresh ricotta made in berkeley by belfiore and parmesan with red",
     "yellow",
-    "and green onion",
-    "and house made basil- pine nut pesto"
+    "green onion",
+    "house made basil- pine nut pesto"
   ]
 }
