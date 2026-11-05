@@ -25,6 +25,8 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-11-05 | Thu | Marinated artichoke, mozzarella, Caciocavallo cheese, arugula, lemon dressing |
 | 2026-11-06 | Fri | Mozzarella, Fontina, fresh ricotta made in Berkeley by Belfiore and Parmesan with red, yellow, green onion, house made basil- pine nut pesto |
 | 2026-11-07 | Sat | Cremini mushroom, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
+| 2026-11-08 | Sun | _Closed_ |
+| 2026-11-09 | Mon | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
