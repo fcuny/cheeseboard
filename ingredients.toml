@@ -45,7 +45,7 @@ aliases = ["garlic olive oil"]
 
 [ingredients."Valbreso feta"]
 category = "cheese"
-aliases = ["valbreso feta cheese"]
+aliases = ["valbreso feta cheese", "valbreso feta"]
 
 [ingredients."Montalbán"]
 category = "cheese"
@@ -94,6 +94,10 @@ aliases = ["fresh mozzarella made in berkeley by belfiore"]
 [ingredients."Fresh ricotta (Belfiore)"]
 category = "cheese"
 aliases = ["fresh ricotta made in berkeley by belfiore"]
+
+[ingredients."Herbed fresh ricotta"]
+category = "cheese"
+aliases = ["herbed fresh ricotta"]
 
 [ingredients."Basil Parmesan"]
 category = "cheese"
@@ -146,6 +150,10 @@ aliases = ["cremini mushroom"]
 [ingredients."Sweet bell pepper"]
 category = "produce"
 aliases = ["sweet bell pepper", "organic sweet bell pepper"]
+
+[ingredients."Green bell pepper"]
+category = "produce"
+aliases = ["green bell pepper"]
 
 [ingredients."Warren pear"]
 category = "produce"
