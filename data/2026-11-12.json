@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-12",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Organic zucchini (Golden Rule Organics), red onion, herbed fresh ricotta (ricotta made in Berkeley by Belfiore), mozzarella, garlic olive oil, parsley",
+  "ingredients": [
+    "Organic zucchini",
+    "red onion",
+    "herbed fresh ricotta",
+    "mozzarella",
+    "garlic olive oil",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "organic zucchini",
+    "red onion",
+    "herbed fresh ricotta",
+    "mozzarella",
+    "garlic olive oil",
+    "parsley"
+  ]
+}

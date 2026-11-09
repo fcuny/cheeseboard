@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-14",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "House made tomato sauce, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil",
+  "ingredients": [
+    "House made tomato sauce",
+    "fresh mozzarella made in Berkeley by Belfiore",
+    "mozzarella",
+    "garlic olive oil",
+    "basil"
+  ],
+  "ingredients_normalized": [
+    "house made tomato sauce",
+    "fresh mozzarella made in berkeley by belfiore",
+    "mozzarella",
+    "garlic olive oil",
+    "basil"
+  ]
+}

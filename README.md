@@ -19,14 +19,12 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-11-02 | Mon | _Closed_ |
-| 2026-11-03 | Tue | Organic baby spinach, red onion, Valbreso feta cheese, mozzarella, house made tomato sauce, parsley |
-| 2026-11-04 | Wed | Organic Heirloom tomato, red onion, Valbreso feta cheese, mozzarella, organic lemon zest and juice, garlic olive oil, cilantro |
-| 2026-11-05 | Thu | Marinated artichoke, mozzarella, Caciocavallo cheese, arugula, lemon dressing |
-| 2026-11-06 | Fri | Mozzarella, Fontina, fresh ricotta made in Berkeley by Belfiore and Parmesan with red, yellow, green onion, house made basil- pine nut pesto |
-| 2026-11-07 | Sat | Cremini mushroom, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
-| 2026-11-08 | Sun | _Closed_ |
 | 2026-11-09 | Mon | _Closed_ |
+| 2026-11-10 | Tue | Organic tomato, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
+| 2026-11-11 | Wed | Cremini mushroom, green bell pepper, yellow onion, Valbreso feta, mozzarella, garlic olive oil, parsley |
+| 2026-11-12 | Thu | Organic zucchini, red onion, herbed fresh ricotta, mozzarella, garlic olive oil, parsley |
+| 2026-11-13 | Fri | Organic baby chard and kale, leek, mozzarella, Caciocavallo cheese, garlic olive oil, organic orange and lemon zest, parsley |
+| 2026-11-14 | Sat | House made tomato sauce, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files

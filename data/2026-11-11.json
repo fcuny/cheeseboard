@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-11",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "Cremini mushroom, green bell pepper, yellow onion, Valbreso feta, mozzarella, garlic olive oil, parsley",
+  "ingredients": [
+    "Cremini mushroom",
+    "green bell pepper",
+    "yellow onion",
+    "Valbreso feta",
+    "mozzarella",
+    "garlic olive oil",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cremini mushroom",
+    "green bell pepper",
+    "yellow onion",
+    "valbreso feta",
+    "mozzarella",
+    "garlic olive oil",
+    "parsley"
+  ]
+}
