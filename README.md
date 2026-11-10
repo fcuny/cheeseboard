@@ -21,10 +21,11 @@ day at a time — the full history lives in `data/` regardless.
 | --- | --- | --- |
 | 2026-11-09 | Mon | _Closed_ |
 | 2026-11-10 | Tue | Organic tomato, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
-| 2026-11-11 | Wed | Cremini mushroom, green bell pepper, yellow onion, Valbreso feta, mozzarella, garlic olive oil, parsley |
+| 2026-11-11 | Wed | Cremini mushroom, green bell pepper, yellow onion, Valbreso feta cheese, mozzarella, garlic olive oil, parsley |
 | 2026-11-12 | Thu | Organic zucchini, red onion, herbed fresh ricotta, mozzarella, garlic olive oil, parsley |
 | 2026-11-13 | Fri | Organic baby chard and kale, leek, mozzarella, Caciocavallo cheese, garlic olive oil, organic orange and lemon zest, parsley |
 | 2026-11-14 | Sat | House made tomato sauce, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
+| 2026-11-15 | Sun | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
