@@ -26,6 +26,7 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-11-13 | Fri | Organic baby chard and kale, leek, mozzarella, Caciocavallo cheese, garlic olive oil, organic orange and lemon zest, parsley |
 | 2026-11-14 | Sat | House made tomato sauce, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
 | 2026-11-15 | Sun | _Closed_ |
+| 2026-11-16 | Mon | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
