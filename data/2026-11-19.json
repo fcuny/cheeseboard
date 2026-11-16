@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-19",
+  "weekday": "Thu",
+  "closed": false,
+  "ingredients_raw": "Crushed tomato, red onion, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Crushed tomato",
+    "red onion",
+    "Capricho de Cabra goat cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "crushed tomato",
+    "red onion",
+    "capricho de cabra goat cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

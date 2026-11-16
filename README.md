@@ -19,14 +19,13 @@ day at a time — the full history lives in `data/` regardless.
 <!-- PIZZA-SCHEDULE:START -->
 | Date | Day | Pizza |
 | --- | --- | --- |
-| 2026-11-09 | Mon | _Closed_ |
-| 2026-11-10 | Tue | Organic tomato, red onion, mozzarella, toasted garlic Parmesan, garlic olive oil, oregano, parsley |
-| 2026-11-11 | Wed | Cremini mushroom, green bell pepper, yellow onion, Valbreso feta cheese, mozzarella, garlic olive oil, parsley |
-| 2026-11-12 | Thu | Organic zucchini, red onion, herbed fresh ricotta, mozzarella, garlic olive oil, parsley |
-| 2026-11-13 | Fri | Organic baby chard and kale, leek, mozzarella, Caciocavallo cheese, garlic olive oil, organic orange and lemon zest, parsley |
-| 2026-11-14 | Sat | House made tomato sauce, fresh mozzarella made in Berkeley by Belfiore, mozzarella, garlic olive oil, basil |
-| 2026-11-15 | Sun | _Closed_ |
 | 2026-11-16 | Mon | _Closed_ |
+| 2026-11-17 | Tue | Cremini mushroom, red onion, mozzarella, Montalbán cheese, garlic olive oil, parsley |
+| 2026-11-18 | Wed | Roasted Yukon Gold potato, poblano chile, red onion, Valbreso feta cheese, mozzarella, garlic olive oil, lime, cilantro |
+| 2026-11-19 | Thu | Crushed tomato, red onion, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-11-20 | Fri | Broccolini, red onion, Fontina cheese, mozzarella, garlic olive oil, organic lemon zest, parsley |
+| 2026-11-21 | Sat | Cremini mushroom, red onion, mozzarella, Moliterno truffle pecorino cheese, mozzarella, garlic olive oil, oregano, parsley |
+| 2026-11-22 | Sun | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
