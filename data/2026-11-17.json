@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-17",
+  "weekday": "Tue",
+  "closed": false,
+  "ingredients_raw": "Cremini mushroom, red onion, mozzarella, Montalbán cheese, garlic olive oil, parsley",
+  "ingredients": [
+    "Cremini mushroom",
+    "red onion",
+    "mozzarella",
+    "Montalbán cheese",
+    "garlic olive oil",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cremini mushroom",
+    "red onion",
+    "mozzarella",
+    "montalbán cheese",
+    "garlic olive oil",
+    "parsley"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-21",
+  "weekday": "Sat",
+  "closed": false,
+  "ingredients_raw": "Cremini mushroom, red onion, mozzarella, Moliterno truffle pecorino cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients": [
+    "Cremini mushroom",
+    "red onion",
+    "mozzarella",
+    "Moliterno truffle pecorino cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "cremini mushroom",
+    "red onion",
+    "mozzarella",
+    "moliterno truffle pecorino cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "oregano",
+    "parsley"
+  ]
+}

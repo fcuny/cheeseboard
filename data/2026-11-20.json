@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-20",
+  "weekday": "Fri",
+  "closed": false,
+  "ingredients_raw": "Broccolini, red onion, Fontina cheese, mozzarella, garlic olive oil, organic lemon zest, parsley",
+  "ingredients": [
+    "Broccolini",
+    "red onion",
+    "Fontina cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon zest",
+    "parsley"
+  ],
+  "ingredients_normalized": [
+    "broccolini",
+    "red onion",
+    "fontina cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "organic lemon zest",
+    "parsley"
+  ]
+}

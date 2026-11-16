@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-18",
+  "weekday": "Wed",
+  "closed": false,
+  "ingredients_raw": "Roasted Yukon Gold potato, poblano chile, red onion, Valbreso feta cheese, mozzarella, garlic olive oil, lime, cilantro",
+  "ingredients": [
+    "Roasted Yukon Gold potato",
+    "poblano chile",
+    "red onion",
+    "Valbreso feta cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "lime",
+    "cilantro"
+  ],
+  "ingredients_normalized": [
+    "roasted yukon gold potato",
+    "poblano chile",
+    "red onion",
+    "valbreso feta cheese",
+    "mozzarella",
+    "garlic olive oil",
+    "lime",
+    "cilantro"
+  ]
+}
