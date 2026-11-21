@@ -149,7 +149,39 @@ aliases = ["organic zucchini"]
 
 [ingredients."Cremini mushroom"]
 category = "produce"
-aliases = ["cremini mushroom"]
+aliases = ["cremini mushroom", "cremini"]
+
+# The annual Thanksgiving mushroom pizza lists its mushrooms as "King
+# Trumpet, Blue Oyster, ..., and Chanterelle mushroom", so only the last one
+# carries the word "mushroom".
+
+[ingredients."King trumpet mushroom"]
+category = "produce"
+aliases = ["king trumpet"]
+
+[ingredients."Blue oyster mushroom"]
+category = "produce"
+aliases = ["blue oyster"]
+
+[ingredients."Shiitake mushroom"]
+category = "produce"
+aliases = ["baby shiitake"]
+
+[ingredients."Maitake mushroom"]
+category = "produce"
+aliases = ["maitake"]
+
+[ingredients."Honshimeji mushroom"]
+category = "produce"
+aliases = ["honshimeji"]
+
+[ingredients."Porcini mushroom"]
+category = "produce"
+aliases = ["porcini"]
+
+[ingredients."Chanterelle mushroom"]
+category = "produce"
+aliases = ["chanterelle mushroom"]
 
 [ingredients."Sweet bell pepper"]
 category = "produce"
