@@ -30,6 +30,8 @@ day at a time — the full history lives in `data/` regardless.
 | 2026-11-24 | Tue | Organic tomato, red onion, Valbreso feta cheese, mozzarella, garlic olive oil, lemon juice, organic lemon zest, cilantro |
 | 2026-11-25 | Wed | King Trumpet, Blue Oyster, baby Shiitake, Cremini, Maitake, Honshimeji, Porcini, Chanterelle mushroom, onion, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, oregano, parsley |
 | 2026-11-26 | Thu | _Closed_ |
+| 2026-11-27 | Fri | _Closed_ |
+| 2026-11-28 | Sat | _Closed_ |
 <!-- PIZZA-SCHEDULE:END -->
 
 ## Files
