@@ -2,9 +2,9 @@
   "date": "2026-11-25",
   "weekday": "Wed",
   "closed": false,
-  "ingredients_raw": "Our Annual Thanksgiving Mushroom Pizza!: King Trumpet, Blue Oyster, baby Shiitake, Cremini, Maitake, Honshimeji, Porcini, and Chanterelle mushroom, onion, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, oregano, parsley",
+  "ingredients_raw": "Our Annual Thanksgiving Mushroom Pizza! King Trumpet, Blue Oyster, baby Shiitake, Cremini, Maitake, Honshimeji, Porcini, and Chanterelle mushroom, onion, Capricho de Cabra goat cheese, mozzarella, garlic olive oil, oregano, parsley",
   "ingredients": [
-    "King Trumpet",
+    "Our Annual Thanksgiving Mushroom Pizza! King Trumpet",
     "Blue Oyster",
     "baby Shiitake",
     "Cremini",
@@ -20,7 +20,7 @@
     "parsley"
   ],
   "ingredients_normalized": [
-    "king trumpet",
+    "our annual thanksgiving mushroom pizza! king trumpet",
     "blue oyster",
     "baby shiitake",
     "cremini",
